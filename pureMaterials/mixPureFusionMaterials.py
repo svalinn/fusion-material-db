@@ -277,6 +277,100 @@ def mix_Concrete(material_library):
     Concrete_mat=Concrete_mat.expand_elements()
     return Concrete_mat
 
+#  J.-C. Jaboulay, G. Aiello, J. Aubert, and R. Boullon https://doi.org/10.1016/j.fusengdes.2018.12.008
+def mix_HCCL_cap_advanced_plus(material_library):
+    
+    mix=MultiMaterial({material_library['EUROFER97']:0.97,
+                       material_library['HeT410P80']:0.03})
+    cap_mat = mix.mix_by_volume()
+    
+    cap_mat.metadata['mat_number'] = 33
+    cap_mat.metadata['mixturecitation']='https://doi.org/10.1016/j.fusengdes.2018.12.008'
+    
+    constituentCitationList=[str(material_library['EUROFER97'].metadata['citation']),
+                             str(material_library['HeT410P80'].metadata['citation'])]
+    constituentCitation=" ".join(constituentCitationList)
+    cap_mat.metadata['constituentcitation'] = constituentCitation
+    
+    print('HCLL Advanced Plus Cap_mat', cap_mat.metadata['mat_number'],cap_mat.density)
+    print('   Constituent Citations: ', constituentCitation)
+    
+    cap_mat = cap_mat.expand_elements()
+    return(cap_mat)
+
+# R. Boullon, J. Aubert, G. Aiello, J.-C. Jaboulay, A. Morin, and J. Peyraud https://doi.org/10.1016/j.fusengdes.2018.04.107
+def mix_HCLL_advanced_plus_breeder_mat(material_library):
+    
+    mix=MultiMaterial({material_library['EUROFER97']:0.066,
+                       material_library['HeT410P80']:0.044, 
+                       material_library['Pb157Li90']:0.89})
+    HCLL_BZ_mat = mix.mix_by_volume()
+    
+    HCLL_BZ_mat.metadata['mat_number'] = 34
+    HCLL_BZ_mat.metadata['mixturecitation']='https://doi.org/10.1016/j.fusengdes.2018.04.107'
+   
+    constituentCitationList=[str(material_library['EUROFER97'].metadata['citation']),
+                             str(material_library['HeT410P80'].metadata['citation']),
+                             str(material_library['Pb157Li90'])]
+    constituentCitation=" ".join(constituentCitationList)
+    HCLL_BZ_mat.metadata['constituentcitation']= constituentCitation
+    
+    print('HCLL Breeder mat', HCLL_BZ_mat.metadata['mat_number'],
+          HCLL_BZ_mat.density)
+    print('   Constituent Citations: ', constituentCitation)
+    
+    HCLL_BZ_mat = HCLL_BZ_mat.expand_elements()
+    return HCLL_BZ_mat
+
+#  J.-C. Jaboulay, G. Aiello, J. Aubert, and R. Boullon https://doi.org/10.1016/j.fusengdes.2018.12.008
+def mix_HCLL_FW(material_library):
+    
+    w_fraction = 0.2/2.7
+    fw_fraction = 1-w_fraction
+    mix = MultiMaterial({material_library['W']:w_fraction,
+                         material_library['EUROFER97']:0.71*fw_fraction,
+                         material_library['HeT410P80']:0.29*fw_fraction})
+    HCLL_FW_mat = mix.mix_by_volume()
+
+    HCLL_FW_mat.metadata['mat_number'] = 35
+    HCLL_FW_mat.metadata['mixturecitation']="https://doi.org/10.1016/j.fusengdes.2018.12.008"
+    
+    constituentCitationList = [str(material_library['EUROFER97'].metadata['citation']),
+                             str(material_library['HeT410P80'].metadata['citation']),
+                             str(material_library['W'].metadata['citation'])]
+    constituentCitation = " ".join(constituentCitationList)
+    HCLL_FW_mat.metadata['constituentcitation'] = constituentCitation
+
+    print('HCLL FW mat',HCLL_FW_mat.metadata['mat_number'], HCLL_FW_mat.density)
+    print("   Constituent Citations: ", constituentCitation)
+    HCLL_FW_mat = HCLL_FW_mat.expand_elements()
+    return HCLL_FW_mat
+
+# R. Boullon, J. Aubert, G. Aiello, J.-C. Jaboulay, A. Morin, and J. Peyraud https://doi.org/10.1016/j.fusengdes.2018.04.107
+def mix_HCLL_advanced_plus_breeder_MMS(material_library):
+    
+    breeder = mix_HCLL_advanced_plus_breeder_mat(material_library)
+    side_wall = mix_HCLL_FW(material_library)
+    cap = mix_HCCL_cap_advanced_plus(material_library)
+
+    mix = MultiMaterial({breeder:0.888, side_wall:0.035, cap:0.077})
+    HCLL_BZ = mix.mix_by_volume()
+
+    HCLL_BZ.metadata['mat_number'] = 36
+    HCLL_BZ.metadata['mixturecitation'] = "derived from dimensions in https://doi.org/10.1016/j.fusengdes.2018.04.107"
+    
+    constituentCitationList = [str(breeder.metadata['citation']),
+                             str(side_wall.metadata['citation']),
+                             str(cap.metadata['citation'])]
+    constituentCitation = " ".join(constituentCitationList)
+    HCLL_BZ.metadata['constituentcitation'] = constituentCitation
+
+    print('HCLL BZ mat',HCLL_BZ.metadata['mat_number'], HCLL_BZ.density)
+    print("   Constituent Citations: ", constituentCitation)
+
+    return HCLL_BZ
+    
+
 ########################################################################    
 def main():
     #
@@ -347,6 +441,12 @@ def main():
 
     SS316LN_mat = mix_SS316LN(mat_lib)
     mixmat_lib['SS316LN']= SS316LN_mat
+
+    HCLL_breeder = mix_HCLL_advanced_plus_breeder_MMS(mat_lib)
+    mixmat_lib['HCLLMMSBZ'] = HCLL_breeder
+
+    HCLLFW = mix_HCLL_FW(mat_lib)
+    mixmat_lib['HCLLFW'] = HCLLFW
     
     # write fnsf material library
     mixmat_lib.write_hdf5("mixedPureFusionMaterials_libv1.h5") # don't set datapath,nucpath...will be pyne default values
