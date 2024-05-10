@@ -390,6 +390,29 @@ def mix_HCLL_BW(material_library):
     HCLL_BW_mat = HCLL_BW_mat.expand_elements()
     return HCLL_BW_mat
 
+#  J.-C. Jaboulay, G. Aiello, J. Aubert, and R. Boullon https://doi.org/10.1016/j.fusengdes.2018.12.008
+def mix_HCLL_Manifold(material_library):
+
+    mix = MultiMaterial({material_library['EUROFER97']:0.578,
+                         material_library['HeT410P80']:0.307,
+                         material_library['Pb157Li90']:0.115})
+    HCLL_Manifold_mat = mix.mix_by_volume()
+
+    HCLL_Manifold_mat.metadata['mat_number'] = 38
+    HCLL_Manifold_mat.metadata['mixturecitation'] = 'derived from dimensions in https://doi.org/10.1016/j.fusengdes.2018.12.008'
+
+    constituentCitationList = [str(material_library['EUROFER97'].metadata['citation']),
+                             str(material_library['HeT410P80'].metadata['citation']),
+                             str(material_library['Pb157Li90'].metadata['citation'])]
+    constituentCitation = " ".join(constituentCitationList)
+    HCLL_Manifold_mat.metadata['constituentcitation'] = constituentCitation
+
+    print('HCLL Manifold mat', HCLL_Manifold_mat.metadata['mat_number'], HCLL_Manifold_mat.density)
+    print("   Constituent Citations: ", constituentCitation)
+
+    HCLL_Manifold_mat = HCLL_Manifold_mat.expand_elements()
+    return HCLL_Manifold_mat
+
 
     
 
@@ -468,11 +491,15 @@ def main():
     HCLL_breeder = mix_HCLL_advanced_plus_breeder_MMS(mat_lib)
     mixmat_lib['HCLLMMSBZ'] = HCLL_breeder
 
+    # HCLL ADVANCED PLUS BOTH SEGMENTATION SCHEMES
     HCLLFW = mix_HCLL_FW(mat_lib)
     mixmat_lib['HCLLFW'] = HCLLFW
 
     HCLLBW = mix_HCLL_BW(mat_lib)
     mixmat_lib['HCLLBW'] = HCLLBW
+
+    HCLL_Manifold = mix_HCLL_Manifold(mat_lib)
+    mixmat_lib['HCLL_manifold'] = HCLL_Manifold
     
     # write fnsf material library
     mixmat_lib.write_hdf5("mixedPureFusionMaterials_libv1.h5") # don't set datapath,nucpath...will be pyne default values

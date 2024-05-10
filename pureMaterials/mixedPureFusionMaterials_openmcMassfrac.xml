@@ -93,6 +93,182 @@
     <nuclide name="Mo98" wo="6.2211e-03" />
     <nuclide name="Mo100" wo="2.5560e-03" />
   </material>
+  <material id="222" name="EUDEMOHCPBacb" >
+    <density value="2.137548" units="g/cc" />
+    <nuclide name="He3" wo="2.4447e-10" />
+    <nuclide name="He4" wo="2.4212e-04" />
+    <nuclide name="Li6" wo="1.7482e-02" />
+    <nuclide name="Li7" wo="1.1655e-02" />
+    <nuclide name="Be9" wo="2.8023e-01" />
+    <nuclide name="C12" wo="4.6516e-04" />
+    <nuclide name="C13" wo="5.4517e-06" />
+    <nuclide name="O16" wo="8.3572e-02" />
+    <nuclide name="O17" wo="3.3833e-05" />
+    <nuclide name="O18" wo="1.9326e-04" />
+    <nuclide name="Si28" wo="2.0815e-02" />
+    <nuclide name="Si29" wo="1.0952e-03" />
+    <nuclide name="Si30" wo="7.4770e-04" />
+    <nuclide name="Ti46" wo="1.2364e-02" />
+    <nuclide name="Ti47" wo="1.1393e-02" />
+    <nuclide name="Ti48" wo="1.1528e-01" />
+    <nuclide name="Ti49" wo="8.6364e-03" />
+    <nuclide name="Ti50" wo="8.4376e-03" />
+    <nuclide name="V50" wo="1.9925e-06" />
+    <nuclide name="V51" wo="8.1088e-04" />
+    <nuclide name="Cr50" wo="1.5892e-03" />
+    <nuclide name="Cr52" wo="3.1870e-02" />
+    <nuclide name="Cr53" wo="3.6834e-03" />
+    <nuclide name="Cr54" wo="9.3416e-04" />
+    <nuclide name="Mn55" wo="1.7969e-03" />
+    <nuclide name="Fe54" wo="2.1530e-02" />
+    <nuclide name="Fe56" wo="3.5048e-01" />
+    <nuclide name="Fe57" wo="8.2389e-03" />
+    <nuclide name="Fe58" wo="1.1157e-03" />
+    <nuclide name="Ta180" wo="7.1537e-08" />
+    <nuclide name="Ta181" wo="5.9889e-04" />
+    <nuclide name="W180" wo="5.5277e-06" />
+    <nuclide name="W182" wo="1.2343e-03" />
+    <nuclide name="W183" wo="6.7018e-04" />
+    <nuclide name="W184" wo="1.4428e-03" />
+    <nuclide name="W186" wo="1.3533e-03" />
+  </material>
+  <material id="38" name="HCLL_manifold" >
+    <density value="5.553055" units="g/cc" />
+    <nuclide name="He3" wo="3.1913e-10" />
+    <nuclide name="He4" wo="3.1606e-04" />
+    <nuclide name="Li6" wo="9.4672e-04" />
+    <nuclide name="Li7" wo="1.0519e-04" />
+    <nuclide name="C12" wo="8.7706e-04" />
+    <nuclide name="C13" wo="1.0279e-05" />
+    <nuclide name="V50" wo="3.7569e-06" />
+    <nuclide name="V51" wo="1.5289e-03" />
+    <nuclide name="Cr50" wo="2.9965e-03" />
+    <nuclide name="Cr52" wo="6.0091e-02" />
+    <nuclide name="Cr53" wo="6.9450e-03" />
+    <nuclide name="Cr54" wo="1.7614e-03" />
+    <nuclide name="Mn55" wo="3.3880e-03" />
+    <nuclide name="Fe54" wo="4.0595e-02" />
+    <nuclide name="Fe56" wo="6.6083e-01" />
+    <nuclide name="Fe57" wo="1.5535e-02" />
+    <nuclide name="Fe58" wo="2.1036e-03" />
+    <nuclide name="Ta180" wo="1.3488e-07" />
+    <nuclide name="Ta181" wo="1.1292e-03" />
+    <nuclide name="W180" wo="1.0422e-05" />
+    <nuclide name="W182" wo="2.3272e-03" />
+    <nuclide name="W183" wo="1.2636e-03" />
+    <nuclide name="W184" wo="2.7204e-03" />
+    <nuclide name="W186" wo="2.5517e-03" />
+    <nuclide name="Pb204" wo="2.6454e-03" />
+    <nuclide name="Pb206" wo="4.5985e-02" />
+    <nuclide name="Pb207" wo="4.2374e-02" />
+    <nuclide name="Pb208" wo="1.0096e-01" />
+  </material>
+  <material id="17" name="FNSFCC" >
+    <density value="7.93" units="g/cc" />
+    <nuclide name="B10" wo="1.8431e-06" />
+    <nuclide name="B11" wo="8.1569e-06" />
+    <nuclide name="C12" wo="2.9652e-04" />
+    <nuclide name="C13" wo="3.4753e-06" />
+    <nuclide name="N14" wo="6.9727e-04" />
+    <nuclide name="N15" wo="2.7287e-06" />
+    <nuclide name="Si28" wo="4.5933e-03" />
+    <nuclide name="Si29" wo="2.4168e-04" />
+    <nuclide name="Si30" wo="1.6499e-04" />
+    <nuclide name="P31" wo="2.5000e-04" />
+    <nuclide name="S32" wo="9.4715e-05" />
+    <nuclide name="S33" wo="7.7121e-07" />
+    <nuclide name="S34" wo="4.5022e-06" />
+    <nuclide name="S36" wo="1.1217e-08" />
+    <nuclide name="Ti46" wo="7.9201e-05" />
+    <nuclide name="Ti47" wo="7.2978e-05" />
+    <nuclide name="Ti48" wo="7.3845e-04" />
+    <nuclide name="Ti49" wo="5.5322e-05" />
+    <nuclide name="Ti50" wo="5.4049e-05" />
+    <nuclide name="Cr50" wo="7.3040e-03" />
+    <nuclide name="Cr52" wo="1.4647e-01" />
+    <nuclide name="Cr53" wo="1.6929e-02" />
+    <nuclide name="Cr54" wo="4.2934e-03" />
+    <nuclide name="Mn55" wo="1.8000e-02" />
+    <nuclide name="Fe54" wo="3.6608e-02" />
+    <nuclide name="Fe56" wo="5.9593e-01" />
+    <nuclide name="Fe57" wo="1.4009e-02" />
+    <nuclide name="Fe58" wo="1.8970e-03" />
+    <nuclide name="Co59" wo="5.0000e-04" />
+    <nuclide name="Ni58" wo="8.2317e-02" />
+    <nuclide name="Ni60" wo="3.2800e-02" />
+    <nuclide name="Ni61" wo="1.4496e-03" />
+    <nuclide name="Ni62" wo="4.6978e-03" />
+    <nuclide name="Ni64" wo="1.2349e-03" />
+    <nuclide name="Cu63" wo="2.0544e-03" />
+    <nuclide name="Cu65" wo="9.4562e-04" />
+    <nuclide name="Nb93" wo="1.0000e-04" />
+    <nuclide name="Mo92" wo="3.4791e-03" />
+    <nuclide name="Mo94" wo="2.2385e-03" />
+    <nuclide name="Mo95" wo="3.9165e-03" />
+    <nuclide name="Mo96" wo="4.1651e-03" />
+    <nuclide name="Mo97" wo="2.4237e-03" />
+    <nuclide name="Mo98" wo="6.2211e-03" />
+    <nuclide name="Mo100" wo="2.5560e-03" />
+    <nuclide name="Ta180" wo="1.1944e-08" />
+    <nuclide name="Ta181" wo="9.9988e-05" />
+  </material>
+  <material id="224" name="FlibeLi60BZ" >
+    <density value="1.94" units="g/cc" />
+    <nuclide name="Li6" wo="7.8300e-02" />
+    <nuclide name="Li7" wo="5.2200e-02" />
+    <nuclide name="Be9" wo="9.2183e-02" />
+    <nuclide name="F19" wo="7.7732e-01" />
+  </material>
+  <material id="37" name="HCLLBW" >
+    <density value="5.411227" units="g/cc" />
+    <nuclide name="He3" wo="3.2216e-10" />
+    <nuclide name="He4" wo="3.1906e-04" />
+    <nuclide name="C12" wo="1.0869e-03" />
+    <nuclide name="C13" wo="1.2739e-05" />
+    <nuclide name="V50" wo="4.6558e-06" />
+    <nuclide name="V51" wo="1.8947e-03" />
+    <nuclide name="Cr50" wo="3.7134e-03" />
+    <nuclide name="Cr52" wo="7.4469e-02" />
+    <nuclide name="Cr53" wo="8.6067e-03" />
+    <nuclide name="Cr54" wo="2.1828e-03" />
+    <nuclide name="Mn55" wo="4.1987e-03" />
+    <nuclide name="Fe54" wo="5.0308e-02" />
+    <nuclide name="Fe56" wo="8.1895e-01" />
+    <nuclide name="Fe57" wo="1.9251e-02" />
+    <nuclide name="Fe58" wo="2.6069e-03" />
+    <nuclide name="Ta180" wo="1.6716e-07" />
+    <nuclide name="Ta181" wo="1.3994e-03" />
+    <nuclide name="W180" wo="1.2916e-05" />
+    <nuclide name="W182" wo="2.8841e-03" />
+    <nuclide name="W183" wo="1.5660e-03" />
+    <nuclide name="W184" wo="3.3713e-03" />
+    <nuclide name="W186" wo="3.1622e-03" />
+  </material>
+  <material id="35" name="HCLLFW" >
+    <density value="6.526072" units="g/cc" />
+    <nuclide name="He3" wo="2.3751e-10" />
+    <nuclide name="He4" wo="2.3523e-04" />
+    <nuclide name="C12" wo="8.4882e-04" />
+    <nuclide name="C13" wo="9.9482e-06" />
+    <nuclide name="V50" wo="3.6359e-06" />
+    <nuclide name="V51" wo="1.4797e-03" />
+    <nuclide name="Cr50" wo="2.9000e-03" />
+    <nuclide name="Cr52" wo="5.8156e-02" />
+    <nuclide name="Cr53" wo="6.7214e-03" />
+    <nuclide name="Cr54" wo="1.7047e-03" />
+    <nuclide name="Mn55" wo="3.2789e-03" />
+    <nuclide name="Fe54" wo="3.9288e-02" />
+    <nuclide name="Fe56" wo="6.3956e-01" />
+    <nuclide name="Fe57" wo="1.5034e-02" />
+    <nuclide name="Fe58" wo="2.0359e-03" />
+    <nuclide name="Ta180" wo="1.3054e-07" />
+    <nuclide name="Ta181" wo="1.0929e-03" />
+    <nuclide name="W180" wo="2.6739e-04" />
+    <nuclide name="W182" wo="5.9706e-02" />
+    <nuclide name="W183" wo="3.2419e-02" />
+    <nuclide name="W184" wo="6.9794e-02" />
+    <nuclide name="W186" wo="6.5465e-02" />
+  </material>
   <material id="29" name="IFMIFDONESspecimenstack" >
     <density value="6.05525" units="g/cc" />
     <nuclide name="C12" wo="1.0437e-03" />
@@ -117,6 +293,37 @@
     <nuclide name="W184" wo="3.2372e-03" />
     <nuclide name="W186" wo="3.0364e-03" />
   </material>
+  <material id="36" name="HCLLMMSBZ" >
+    <density value="8.627491" units="g/cc" />
+    <nuclide name="He3" wo="3.3976e-11" />
+    <nuclide name="He4" wo="3.3649e-05" />
+    <nuclide name="Li6" wo="4.1877e-03" />
+    <nuclide name="Li7" wo="4.6530e-04" />
+    <nuclide name="C12" wo="1.5266e-04" />
+    <nuclide name="C13" wo="1.7892e-06" />
+    <nuclide name="V50" wo="6.5393e-07" />
+    <nuclide name="V51" wo="2.6612e-04" />
+    <nuclide name="Cr50" wo="5.2156e-04" />
+    <nuclide name="Cr52" wo="1.0459e-02" />
+    <nuclide name="Cr53" wo="1.2089e-03" />
+    <nuclide name="Cr54" wo="3.0658e-04" />
+    <nuclide name="Mn55" wo="5.8972e-04" />
+    <nuclide name="Fe54" wo="7.0660e-03" />
+    <nuclide name="Fe56" wo="1.1502e-01" />
+    <nuclide name="Fe57" wo="2.7039e-03" />
+    <nuclide name="Fe58" wo="3.6615e-04" />
+    <nuclide name="Ta180" wo="2.3478e-08" />
+    <nuclide name="Ta181" wo="1.9655e-04" />
+    <nuclide name="W180" wo="8.6263e-06" />
+    <nuclide name="W182" wo="1.9262e-03" />
+    <nuclide name="W183" wo="1.0459e-03" />
+    <nuclide name="W184" wo="2.2516e-03" />
+    <nuclide name="W186" wo="2.1120e-03" />
+    <nuclide name="Pb204" wo="1.1701e-02" />
+    <nuclide name="Pb206" wo="2.0341e-01" />
+    <nuclide name="Pb207" wo="1.8743e-01" />
+    <nuclide name="Pb208" wo="4.4656e-01" />
+  </material>
   <material id="312" name="reIron" >
     <density value="7.874" units="g/cc" />
     <nuclide name="Fe54" wo="5.6456e-02" />
@@ -124,36 +331,27 @@
     <nuclide name="Fe57" wo="2.1604e-02" />
     <nuclide name="Fe58" wo="2.9254e-03" />
   </material>
-  <material id="30" name="Pb" >
-    <density value="11.35" units="g/cc" />
-    <nuclide name="Pb204" wo="1.3781e-02" />
-    <nuclide name="Pb206" wo="2.3955e-01" />
-    <nuclide name="Pb207" wo="2.2074e-01" />
-    <nuclide name="Pb208" wo="5.2592e-01" />
-  </material>
-  <material id="9" name="FNSFFW" >
-    <density value="2.686373" units="g/cc" />
-    <nuclide name="He3" wo="1.4182e-09" />
-    <nuclide name="He4" wo="1.4046e-03" />
-    <nuclide name="C12" wo="9.8703e-04" />
-    <nuclide name="C13" wo="1.1568e-05" />
-    <nuclide name="V50" wo="4.8955e-06" />
-    <nuclide name="V51" wo="1.9923e-03" />
-    <nuclide name="Cr50" wo="3.1259e-03" />
-    <nuclide name="Cr52" wo="6.2686e-02" />
-    <nuclide name="Cr53" wo="7.2450e-03" />
-    <nuclide name="Cr54" wo="1.8374e-03" />
-    <nuclide name="Fe54" wo="5.0840e-02" />
-    <nuclide name="Fe56" wo="8.2760e-01" />
-    <nuclide name="Fe57" wo="1.9455e-02" />
-    <nuclide name="Fe58" wo="2.6345e-03" />
-    <nuclide name="Ta180" wo="2.3854e-08" />
-    <nuclide name="Ta181" wo="1.9970e-04" />
-    <nuclide name="W180" wo="2.3459e-05" />
-    <nuclide name="W182" wo="5.2380e-03" />
-    <nuclide name="W183" wo="2.8441e-03" />
-    <nuclide name="W184" wo="6.1230e-03" />
-    <nuclide name="W186" wo="5.7433e-03" />
+  <material id="26" name="FNSFFWstruct" >
+    <density value="7.89" units="g/cc" />
+    <nuclide name="C12" wo="9.8842e-04" />
+    <nuclide name="C13" wo="1.1584e-05" />
+    <nuclide name="V50" wo="4.9024e-06" />
+    <nuclide name="V51" wo="1.9951e-03" />
+    <nuclide name="Cr50" wo="3.1303e-03" />
+    <nuclide name="Cr52" wo="6.2775e-02" />
+    <nuclide name="Cr53" wo="7.2552e-03" />
+    <nuclide name="Cr54" wo="1.8400e-03" />
+    <nuclide name="Fe54" wo="5.0912e-02" />
+    <nuclide name="Fe56" wo="8.2877e-01" />
+    <nuclide name="Fe57" wo="1.9482e-02" />
+    <nuclide name="Fe58" wo="2.6382e-03" />
+    <nuclide name="Ta180" wo="2.3887e-08" />
+    <nuclide name="Ta181" wo="1.9998e-04" />
+    <nuclide name="W180" wo="2.3492e-05" />
+    <nuclide name="W182" wo="5.2454e-03" />
+    <nuclide name="W183" wo="2.8481e-03" />
+    <nuclide name="W184" wo="6.1316e-03" />
+    <nuclide name="W186" wo="5.7513e-03" />
   </material>
   <material id="220" name="FNSFDCLL" >
     <density value="7.762922" units="g/cc" />
@@ -188,27 +386,29 @@
     <nuclide name="Pb207" wo="2.0295e-01" />
     <nuclide name="Pb208" wo="4.8354e-01" />
   </material>
-  <material id="26" name="FNSFFWstruct" >
-    <density value="7.89" units="g/cc" />
-    <nuclide name="C12" wo="9.8842e-04" />
-    <nuclide name="C13" wo="1.1584e-05" />
-    <nuclide name="V50" wo="4.9024e-06" />
-    <nuclide name="V51" wo="1.9951e-03" />
-    <nuclide name="Cr50" wo="3.1303e-03" />
-    <nuclide name="Cr52" wo="6.2775e-02" />
-    <nuclide name="Cr53" wo="7.2552e-03" />
-    <nuclide name="Cr54" wo="1.8400e-03" />
-    <nuclide name="Fe54" wo="5.0912e-02" />
-    <nuclide name="Fe56" wo="8.2877e-01" />
-    <nuclide name="Fe57" wo="1.9482e-02" />
-    <nuclide name="Fe58" wo="2.6382e-03" />
-    <nuclide name="Ta180" wo="2.3887e-08" />
-    <nuclide name="Ta181" wo="1.9998e-04" />
-    <nuclide name="W180" wo="2.3492e-05" />
-    <nuclide name="W182" wo="5.2454e-03" />
-    <nuclide name="W183" wo="2.8481e-03" />
-    <nuclide name="W184" wo="6.1316e-03" />
-    <nuclide name="W186" wo="5.7513e-03" />
+  <material id="401" name="FNSFIBSRfill" >
+    <density value="11.118189" units="g/cc" />
+    <nuclide name="He3" wo="1.3707e-10" />
+    <nuclide name="He4" wo="1.3575e-04" />
+    <nuclide name="C12" wo="5.8491e-02" />
+    <nuclide name="C13" wo="6.8552e-04" />
+    <nuclide name="V50" wo="1.7395e-07" />
+    <nuclide name="V51" wo="7.0791e-05" />
+    <nuclide name="Cr50" wo="1.1107e-04" />
+    <nuclide name="Cr52" wo="2.2274e-03" />
+    <nuclide name="Cr53" wo="2.5743e-04" />
+    <nuclide name="Cr54" wo="6.5288e-05" />
+    <nuclide name="Fe54" wo="1.8065e-03" />
+    <nuclide name="Fe56" wo="2.9407e-02" />
+    <nuclide name="Fe57" wo="6.9128e-04" />
+    <nuclide name="Fe58" wo="9.3608e-05" />
+    <nuclide name="Ta180" wo="8.4758e-10" />
+    <nuclide name="Ta181" wo="7.0956e-06" />
+    <nuclide name="W180" wo="1.0641e-03" />
+    <nuclide name="W182" wo="2.3760e-01" />
+    <nuclide name="W183" wo="1.2901e-01" />
+    <nuclide name="W184" wo="2.7775e-01" />
+    <nuclide name="W186" wo="2.6052e-01" />
   </material>
   <material id="19" name="FNSFIBWP" >
     <density value="6.87166" units="g/cc" />
@@ -277,29 +477,36 @@
     <nuclide name="Sn122" wo="1.1084e-03" />
     <nuclide name="Sn124" wo="1.4089e-03" />
   </material>
-  <material id="401" name="FNSFIBSRfill" >
-    <density value="11.118189" units="g/cc" />
-    <nuclide name="He3" wo="1.3707e-10" />
-    <nuclide name="He4" wo="1.3575e-04" />
-    <nuclide name="C12" wo="5.8491e-02" />
-    <nuclide name="C13" wo="6.8552e-04" />
-    <nuclide name="V50" wo="1.7395e-07" />
-    <nuclide name="V51" wo="7.0791e-05" />
-    <nuclide name="Cr50" wo="1.1107e-04" />
-    <nuclide name="Cr52" wo="2.2274e-03" />
-    <nuclide name="Cr53" wo="2.5743e-04" />
-    <nuclide name="Cr54" wo="6.5288e-05" />
-    <nuclide name="Fe54" wo="1.8065e-03" />
-    <nuclide name="Fe56" wo="2.9407e-02" />
-    <nuclide name="Fe57" wo="6.9128e-04" />
-    <nuclide name="Fe58" wo="9.3608e-05" />
-    <nuclide name="Ta180" wo="8.4758e-10" />
-    <nuclide name="Ta181" wo="7.0956e-06" />
-    <nuclide name="W180" wo="1.0641e-03" />
-    <nuclide name="W182" wo="2.3760e-01" />
-    <nuclide name="W183" wo="1.2901e-01" />
-    <nuclide name="W184" wo="2.7775e-01" />
-    <nuclide name="W186" wo="2.6052e-01" />
+  <material id="30" name="Pb" >
+    <density value="11.35" units="g/cc" />
+    <nuclide name="Pb204" wo="1.3781e-02" />
+    <nuclide name="Pb206" wo="2.3955e-01" />
+    <nuclide name="Pb207" wo="2.2074e-01" />
+    <nuclide name="Pb208" wo="5.2592e-01" />
+  </material>
+  <material id="9" name="FNSFFW" >
+    <density value="2.686373" units="g/cc" />
+    <nuclide name="He3" wo="1.4182e-09" />
+    <nuclide name="He4" wo="1.4046e-03" />
+    <nuclide name="C12" wo="9.8703e-04" />
+    <nuclide name="C13" wo="1.1568e-05" />
+    <nuclide name="V50" wo="4.8955e-06" />
+    <nuclide name="V51" wo="1.9923e-03" />
+    <nuclide name="Cr50" wo="3.1259e-03" />
+    <nuclide name="Cr52" wo="6.2686e-02" />
+    <nuclide name="Cr53" wo="7.2450e-03" />
+    <nuclide name="Cr54" wo="1.8374e-03" />
+    <nuclide name="Fe54" wo="5.0840e-02" />
+    <nuclide name="Fe56" wo="8.2760e-01" />
+    <nuclide name="Fe57" wo="1.9455e-02" />
+    <nuclide name="Fe58" wo="2.6345e-03" />
+    <nuclide name="Ta180" wo="2.3854e-08" />
+    <nuclide name="Ta181" wo="1.9970e-04" />
+    <nuclide name="W180" wo="2.3459e-05" />
+    <nuclide name="W182" wo="5.2380e-03" />
+    <nuclide name="W183" wo="2.8441e-03" />
+    <nuclide name="W184" wo="6.1230e-03" />
+    <nuclide name="W186" wo="5.7433e-03" />
   </material>
   <material id="31" name="Concrete" >
     <density value="2.35" units="g/cc" />
@@ -367,99 +574,4 @@
     <nuclide name="W183" wo="7.4295e-04" />
     <nuclide name="W184" wo="1.5995e-03" />
     <nuclide name="W186" wo="1.5003e-03" />
-  </material>
-  <material id="224" name="FlibeLi60BZ" >
-    <density value="1.94" units="g/cc" />
-    <nuclide name="Li6" wo="7.8300e-02" />
-    <nuclide name="Li7" wo="5.2200e-02" />
-    <nuclide name="Be9" wo="9.2183e-02" />
-    <nuclide name="F19" wo="7.7732e-01" />
-  </material>
-  <material id="17" name="FNSFCC" >
-    <density value="7.93" units="g/cc" />
-    <nuclide name="B10" wo="1.8431e-06" />
-    <nuclide name="B11" wo="8.1569e-06" />
-    <nuclide name="C12" wo="2.9652e-04" />
-    <nuclide name="C13" wo="3.4753e-06" />
-    <nuclide name="N14" wo="6.9727e-04" />
-    <nuclide name="N15" wo="2.7287e-06" />
-    <nuclide name="Si28" wo="4.5933e-03" />
-    <nuclide name="Si29" wo="2.4168e-04" />
-    <nuclide name="Si30" wo="1.6499e-04" />
-    <nuclide name="P31" wo="2.5000e-04" />
-    <nuclide name="S32" wo="9.4715e-05" />
-    <nuclide name="S33" wo="7.7121e-07" />
-    <nuclide name="S34" wo="4.5022e-06" />
-    <nuclide name="S36" wo="1.1217e-08" />
-    <nuclide name="Ti46" wo="7.9201e-05" />
-    <nuclide name="Ti47" wo="7.2978e-05" />
-    <nuclide name="Ti48" wo="7.3845e-04" />
-    <nuclide name="Ti49" wo="5.5322e-05" />
-    <nuclide name="Ti50" wo="5.4049e-05" />
-    <nuclide name="Cr50" wo="7.3040e-03" />
-    <nuclide name="Cr52" wo="1.4647e-01" />
-    <nuclide name="Cr53" wo="1.6929e-02" />
-    <nuclide name="Cr54" wo="4.2934e-03" />
-    <nuclide name="Mn55" wo="1.8000e-02" />
-    <nuclide name="Fe54" wo="3.6608e-02" />
-    <nuclide name="Fe56" wo="5.9593e-01" />
-    <nuclide name="Fe57" wo="1.4009e-02" />
-    <nuclide name="Fe58" wo="1.8970e-03" />
-    <nuclide name="Co59" wo="5.0000e-04" />
-    <nuclide name="Ni58" wo="8.2317e-02" />
-    <nuclide name="Ni60" wo="3.2800e-02" />
-    <nuclide name="Ni61" wo="1.4496e-03" />
-    <nuclide name="Ni62" wo="4.6978e-03" />
-    <nuclide name="Ni64" wo="1.2349e-03" />
-    <nuclide name="Cu63" wo="2.0544e-03" />
-    <nuclide name="Cu65" wo="9.4562e-04" />
-    <nuclide name="Nb93" wo="1.0000e-04" />
-    <nuclide name="Mo92" wo="3.4791e-03" />
-    <nuclide name="Mo94" wo="2.2385e-03" />
-    <nuclide name="Mo95" wo="3.9165e-03" />
-    <nuclide name="Mo96" wo="4.1651e-03" />
-    <nuclide name="Mo97" wo="2.4237e-03" />
-    <nuclide name="Mo98" wo="6.2211e-03" />
-    <nuclide name="Mo100" wo="2.5560e-03" />
-    <nuclide name="Ta180" wo="1.1944e-08" />
-    <nuclide name="Ta181" wo="9.9988e-05" />
-  </material>
-  <material id="222" name="EUDEMOHCPBacb" >
-    <density value="2.137548" units="g/cc" />
-    <nuclide name="He3" wo="2.4447e-10" />
-    <nuclide name="He4" wo="2.4212e-04" />
-    <nuclide name="Li6" wo="1.7482e-02" />
-    <nuclide name="Li7" wo="1.1655e-02" />
-    <nuclide name="Be9" wo="2.8023e-01" />
-    <nuclide name="C12" wo="4.6516e-04" />
-    <nuclide name="C13" wo="5.4517e-06" />
-    <nuclide name="O16" wo="8.3572e-02" />
-    <nuclide name="O17" wo="3.3833e-05" />
-    <nuclide name="O18" wo="1.9326e-04" />
-    <nuclide name="Si28" wo="2.0815e-02" />
-    <nuclide name="Si29" wo="1.0952e-03" />
-    <nuclide name="Si30" wo="7.4770e-04" />
-    <nuclide name="Ti46" wo="1.2364e-02" />
-    <nuclide name="Ti47" wo="1.1393e-02" />
-    <nuclide name="Ti48" wo="1.1528e-01" />
-    <nuclide name="Ti49" wo="8.6364e-03" />
-    <nuclide name="Ti50" wo="8.4376e-03" />
-    <nuclide name="V50" wo="1.9925e-06" />
-    <nuclide name="V51" wo="8.1088e-04" />
-    <nuclide name="Cr50" wo="1.5892e-03" />
-    <nuclide name="Cr52" wo="3.1870e-02" />
-    <nuclide name="Cr53" wo="3.6834e-03" />
-    <nuclide name="Cr54" wo="9.3416e-04" />
-    <nuclide name="Mn55" wo="1.7969e-03" />
-    <nuclide name="Fe54" wo="2.1530e-02" />
-    <nuclide name="Fe56" wo="3.5048e-01" />
-    <nuclide name="Fe57" wo="8.2389e-03" />
-    <nuclide name="Fe58" wo="1.1157e-03" />
-    <nuclide name="Ta180" wo="7.1537e-08" />
-    <nuclide name="Ta181" wo="5.9889e-04" />
-    <nuclide name="W180" wo="5.5277e-06" />
-    <nuclide name="W182" wo="1.2343e-03" />
-    <nuclide name="W183" wo="6.7018e-04" />
-    <nuclide name="W184" wo="1.4428e-03" />
-    <nuclide name="W186" wo="1.3533e-03" />
   </material>
