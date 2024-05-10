@@ -64,12 +64,8 @@ if args.writeMCNP:
         testmat.write_mcnp('testplayallmat_mcnpMassfrac.txt')
 # if requested, write all the materials in OpenMC matl card format to a text file
 if args.writeOpenMC:
-    print("\n Writing all the materials in OpenMC material format to 2 text files (atom and mass frac format)... \n")
-    for matkey, matvalue in matllib.items():
-        print("   Writing ", matkey.decode('utf8'), "to a file (testplayallmat_openmcxxx.txt) using OpenMC format and atom/mass fractions... \n")
-        testmat=matllib[matkey]
-        testmat.write_openmc('testplayallmat_openmcAtomfrac.xml', 'atom')
-        testmat.write_openmc('testplayallmat_openmcMassfrac.xml')        
+    print("\n Writing all the materials in OpenMC material format (atom fraction)... \n")
+    matllib.write_openmc("testplayallmat_openmcAtomfrac.xml")
 #
 # if requested, write all the materials in Alara matl card format to a text file
 if args.writeAlara:

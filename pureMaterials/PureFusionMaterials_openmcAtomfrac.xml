@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+<materials>
   <material id="25" name="Fe" >
     <density value="7.874" units="g/cc" />
     <nuclide name="Fe54" ao="5.8450e-02" />
@@ -630,3 +632,4 @@
     <nuclide name="W184" ao="2.8299e-03" />
     <nuclide name="W186" ao="2.6258e-03" />
   </material>
+</materials>
