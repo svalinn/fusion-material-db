@@ -307,11 +307,11 @@ def mix_HCLL_advanced_plus_breeder_mat(material_library):
     HCLL_BZ_mat = mix.mix_by_volume()
     
     HCLL_BZ_mat.metadata['mat_number'] = 34
-    HCLL_BZ_mat.metadata['mixturecitation']='https://doi.org/10.1016/j.fusengdes.2018.04.107'
+    HCLL_BZ_mat.metadata['mixturecitation']='from dimensions in https://doi.org/10.1016/j.fusengdes.2018.04.107'
    
     constituentCitationList=[str(material_library['EUROFER97'].metadata['citation']),
                              str(material_library['HeT410P80'].metadata['citation']),
-                             str(material_library['Pb157Li90'])]
+                             str(material_library['Pb157Li90'].metadata['citation'])]
     constituentCitation=" ".join(constituentCitationList)
     HCLL_BZ_mat.metadata['constituentcitation']= constituentCitation
     
@@ -369,6 +369,28 @@ def mix_HCLL_advanced_plus_breeder_MMS(material_library):
     print("   Constituent Citations: ", constituentCitation)
 
     return HCLL_BZ
+
+#  J.-C. Jaboulay, G. Aiello, J. Aubert, and R. Boullon https://doi.org/10.1016/j.fusengdes.2018.12.008
+def mix_HCLL_BW(material_library):
+
+    mix = MultiMaterial({material_library['EUROFER97']:0.698, material_library['HeT410P80']:0.302})
+    HCLL_BW_mat = mix.mix_by_volume()
+
+    HCLL_BW_mat.metadata['mat_number'] = 37
+    HCLL_BW_mat.metadata['mixturecitation'] = 'https://doi.org/10.1016/j.fusengdes.2018.12.008'
+
+    constituentCitationList = [str(material_library['EUROFER97'].metadata['citation']),
+                             str(material_library['HeT410P80'].metadata['citation'])]
+    constituentCitation = " ".join(constituentCitationList)
+    HCLL_BW_mat.metadata['constituentcitation'] = constituentCitation
+    
+    print('HCCLL BW mat', HCLL_BW_mat.metadata['mat_number'], HCLL_BW_mat.density)
+    print("   Constituent Citations: ", constituentCitation)
+
+    HCLL_BW_mat = HCLL_BW_mat.expand_elements()
+    return HCLL_BW_mat
+
+
     
 
 ########################################################################    
@@ -442,11 +464,15 @@ def main():
     SS316LN_mat = mix_SS316LN(mat_lib)
     mixmat_lib['SS316LN']= SS316LN_mat
 
+    # HCLL ADVANCED PLUS MULTI MODULE SEGMENTATION
     HCLL_breeder = mix_HCLL_advanced_plus_breeder_MMS(mat_lib)
     mixmat_lib['HCLLMMSBZ'] = HCLL_breeder
 
     HCLLFW = mix_HCLL_FW(mat_lib)
     mixmat_lib['HCLLFW'] = HCLLFW
+
+    HCLLBW = mix_HCLL_BW(mat_lib)
+    mixmat_lib['HCLLBW'] = HCLLBW
     
     # write fnsf material library
     mixmat_lib.write_hdf5("mixedPureFusionMaterials_libv1.h5") # don't set datapath,nucpath...will be pyne default values
