@@ -9,15 +9,6 @@
 # Improvements to make:
 # -should use a function to create the constituent citation list for each mixture
 #
-# references for FNSF compositions
-#
-# MadaniUWFDM1423_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1423.pdf
-# EliasUWFMD1424_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1424.pdf
-# HarbFusSciTec_2017 https://doi.org/10.1080/15361055.2017.1333846.
-# ElGuebalyFusSciTec_2017 https://doi.org/10.1080/15361055.2017.1333865
-# DavisFusEngDes_2018 https://doi.org/10.1016/j.fusengdes.2017.06.008
-# BohmFusSciTec_2019 https://doi.org/10.1080/15361055.2019.1600930
-# SchnabelNDS_2024 preprint https://arxiv.org/pdf/2311.10063.pdf
 #
 import os
 from pyne import material
@@ -36,7 +27,7 @@ def load_matlib():
 """
 FNSFFW    (34% FS MF82H, 66% He)
 """
-# fullreference DavisFusEngDes_2018 https://doi.org/10.1016/j.fusengdes.2017.06.008
+# fullreference: DavisFusEngDes_2018 https://doi.org/10.1016/j.fusengdes.2017.06.008
 def mix_FNSFFW(material_library):
     mix=MultiMaterial({material_library['MF82H']:0.34,material_library['HeT410P80']:0.66})
     FNSFFW_mat=mix.mix_by_volume()
@@ -77,9 +68,9 @@ def mix_reIron(material_library):
 # blanket materials
 
 #FNSF OB DCLL Blanket (73.7% LiPb (90% Li-6), 14.9% He/void, 7.5% FS, 3.9% SiC)
-# fullreference EliasUWFMD1424_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1424.pdf
+# fullreference: EliasUWFMD1424_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1424.pdf
 #FNSF IB DCLL Blanket (80% LiPb (90% Li-6), 12% He/void, 5% FS, 3% SiC)
-# fullreference MadaniUWFDM1423_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1423.pdf
+# fullreference: MadaniUWFDM1423_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1423.pdf
 
 # FNSF DCLL approximate average    77%                  13.5%        6%  3.5%
 
@@ -100,16 +91,10 @@ def mix_FNSFDCLL(material_library):
     return FNSFDCLL_mat
 
 # EUDEMO
-# fullreference EadeFusEngDes_2017
-# T. Eade et al., Fusion Engineering and Design 124 (2017) page 1241-1245
-#    http://dx.doi.org/10.1016/j.fusengdes.2017.02.100
-# fullreference GilbertNucFus_2017
-# M. Gilbert et al., Nucl. Fusion 57 (2017) 046015
-#    https://doi.org/10.1088/1741-4326/aa5bd7
+# fullreference: EadeFusEngDes_2017 T. Eade et al., Fusion Engineering and Design 124 (2017) page 1241-1245 http://dx.doi.org/10.1016/j.fusengdes.2017.02.100
+# fullreference: GilbertNucFus_2017 M. Gilbert et al., Nucl. Fusion 57 (2017) 046015 https://doi.org/10.1088/1741-4326/aa5bd7
 #
-# fullreference ZhouEnergies_2023
-# G. Zhou et al., Energies 2023, 16, 5377
-#    https://doi.org/10.3390/en16145377
+# fullreference: ZhouEnergies_2023 G. Zhou et al., Energies 2023, 16, 5377 https://doi.org/10.3390/en16145377
 #note: latest design uses mixed pebbles Li4SiO4+35 mole% Li2TiO3 and Be12Ti blocks
 
 """
@@ -161,11 +146,12 @@ def mix_PbLi90BZ(material_library):
 """
 FlibeLi60BZ 100% Flibe (60% Li-6)
 """
+# fullreference: SohalINLEXT-10-18297_2013 M. Sohal et al., "Engineering Database of Liquid Salt Thermophysical and Thermochemical Properties", INL/EXT-10-18297, June 2013. https://inldigitallibrary.inl.gov/sites/STI/STI/5698704.pdf
 def mix_FlibeLi60BZ(material_library):
     mix=MultiMaterial({material_library['FlibeLi60']:1.00})
     FlibeLi60BZ_mat=mix.mix_by_volume()
     FlibeLi60BZ_mat.metadata['mat_number']=224
-    FlibeLi60BZ_mat.metadata['mixturecitation']='BoullonFusEngDes_2017 and density ???'
+    FlibeLi60BZ_mat.metadata['mixturecitation']='SohalINLEXT-10-18297_2013 and density ???'
     print('FlibeLi60BZ_mat  ', FlibeLi60BZ_mat.metadata['mat_number'], FlibeLi60BZ_mat.density)
     FlibeLi60BZ_mat=FlibeLi60BZ_mat.expand_elements()
     return FlibeLi60BZ_mat
@@ -175,7 +161,7 @@ def mix_FlibeLi60BZ(material_library):
 """
 FNSFIBSR (28% MF82H, 20% He, 52% WC filler) 
 """
-# fullreference
+# fullreference: ElGuebalyFusSciTec_2017 https://doi.org/10.1080/15361055.2017.1333865
 def mix_FNSFIBSR(material_library):
     mix=MultiMaterial({material_library['MF82H']:0.28, material_library['WC']:0.52, material_library['HeT410P80']: 0.20})
     FNSFIBSR_mat=mix.mix_by_volume()
@@ -188,6 +174,7 @@ def mix_FNSFIBSR(material_library):
 """
 FNSFIBSRstruct    (100% FS MF82H)
 """
+# fullreference: SchnabelNDS_2024 G. Schnabel et al., "FENDL: A Library for Fusion Research and Applications, Nuclear Data Sheets, vol. 193, pages 1-78, 2024. https://doi.org/10.1016/j.nds.2024.01.001
 def mix_FNSFIBSRstruct(material_library):
     mix=MultiMaterial({material_library['MF82H']:1.00})
     FNSFIBSRstruct_mat=mix.mix_by_volume()
@@ -236,7 +223,7 @@ def mix_FNSFIBWP(material_library):
 """
 IFMIFDONESspecimenstack    (75% EUROFER97, 25% Na)
 """
-# fullreference QiuNucMatEnergy_2018 https://doi.org/10.1016/j.nme.2018.04.009
+# fullreference: QiuNucMatEnergy_2018 https://doi.org/10.1016/j.nme.2018.04.009
 def mix_IFMIFDONESspecimenstack(material_library):
     mix=MultiMaterial({material_library['EUROFER97']:0.75,material_library['Na']:0.25})
     IFMIFDONESspecimenstack_mat=mix.mix_by_volume()

@@ -460,6 +460,93 @@ def Li60T500_mat() :
     Li60T500.metadata['citation']='BohmFusSciTec_2019'
     return Li60T500
 
+# reference: pnnl-15870rev1
+def Mo_mat() :
+    nucvec = {420000000: 100.0}
+    Mo = Material(nucvec=nucvec)
+    Mo.density = 10.22
+    Mo=Mo.expand_elements()
+    Mo.metadata['citation']='pnnl-15870rev1'
+    return Mo
+
+# reference: pnnl-15870rev1
+def Aluminum6061_mat() :
+    nucvec = {120000000:1.0, 130000000:97.2, 140000000:0.6, 220000000:0.088, 240000000:0.195, 250000000:0.088, 260000000:0.4090, 290000000:0.275, 300000000:0.146}
+    Aluminum6061 = Material(nucvec)
+    Aluminum6061.density = 2.70
+    Aluminum6061=Aluminum6061.expand_elements()
+    Aluminum6061.metadata['citation']='pnnl-15870rev1'
+    return Aluminum6061
+
+# reference: pnnl-15870rev1
+def OilTexasCrude_mat() :
+    nucvec = {10000000:12.3246, 60000000:85.2204, 70000000:0.7014, 160000000:1.7535}
+    OilTexasCrude = Material(nucvec)
+    OilTexasCrude.density = 0.875
+    OilTexasCrude=OilTexasCrude.expand_elements()
+    OilTexasCrude.metadata['citation']='pnnl-15870rev1'
+    return OilTexasCrude
+
+# reference: pnnl-15870rev1
+def EthyleneGlycol_mat():
+    EthyleneGlycol = Material()
+    EthyleneGlycol.from_atom_frac({10000000:6, 60000000:2, 80000000:2})
+    EthyleneGlycol.density = 1.114
+    EthyleneGlycol=EthyleneGlycol.expand_elements()
+    EthyleneGlycol.metadata['citation']='pnnl-15870rev1'
+    return EthyleneGlycol
+
+# reference: pnnl-15870rev1
+def AluminumOxide_mat():
+    AluminumOxide = Material()
+    AluminumOxide.from_atom_frac({80000000:3, 130000000:2})
+    AluminumOxide.density = 3.97
+    AluminumOxide=AluminumOxide.expand_elements()
+    AluminumOxide.metadata['citation']='pnnl-15870rev1'
+    return AluminumOxide
+
+# fullreference: GrossbeckJNM_1998 M.L. Grossbeck et al.,"Analysis of V-Cr-Ti alloys in terms of activation of impurities", Journal of Nuclear Materials, vol. 258-263, page 1778-1783 1998. https://doi.org/10.1016/S0022-3115(98)00228-1
+# fullreference: ARIES_PropertiesArchive http://qedfusion.org/LIB/PROPS/ 
+# fullreference: MetalsHandbook_1979 Metals Handbook, Ninth Edition, Vol. 2: "Properties and SelectionNonferrous Alloys and Pure Metals," ASM, Metals Park OH (1979)
+def V4Cr4Ti_mat() :
+    nucvec = {220000000: 4.0,230000000: 92.0, 240000000: 4.0}
+    V4Cr4Ti = Material(nucvec)
+    V4Cr4Ti.density = 6.05 # room temperature
+    V4Cr4Ti=V4Cr4Ti.expand_elements()
+    V4Cr4Ti.metadata['citation']='GrossbeckJNM_1998 and density ARIES_PropertiesArchive and MetalsHandbook_1979'
+    return V4Cr4Ti
+
+def ZrH2_mat():
+    ZrH2 = Material()
+    ZrH2.from_atom_frac({10000000: 2,400000000: 1})
+    ZrH2.density = 5.61 #this is at room temperature
+    ZrH2=ZrH2.expand_elements()
+    ZrH2.metadata['citation']='pnnl-15870rev1'
+    return ZrH2
+
+# 
+def Inconel718_mat() :
+    nucvec =    { 50000000: 0.0050,
+                  60000000: 0.0730,
+                 130000000: 0.5000,
+                 140000000: 0.3180,
+                 150000000: 0.0140,
+                 160000000: 0.0140,
+                 220000000: 0.9000,
+                 240000000: 19.0000,
+                 250000000: 0.3180,
+                 260000000: 17.0000,
+                 280000000: 52.5000,
+                 270000000: 0.9100,
+                 290000000: 0.2730,
+                 410000000: 5.1250,
+                 420000000: 3.0500}
+    Inconel718 = Material(nucvec)
+    Inconel718.density = 8.19 # room temperature
+    Inconel718=Inconel718.expand_elements()
+    Inconel718.metadata['citation']='pnnl-15870rev1'
+    return Inconel718
+
 # --------------------------------------------------------
 def main():
     # create material library object
@@ -512,6 +599,15 @@ def main():
     mat_lib['LiNatT500']=LiNatT500_mat()
     mat_lib['Li60']=Li60_mat()
     mat_lib['Li60T500']=Li60T500_mat()
+#
+    mat_lib['Mo']=Mo_mat()
+    mat_lib['Aluminum6061']=Aluminum6061_mat()
+    mat_lib['OilTexasCrude']=OilTexasCrude_mat()
+    mat_lib['EthyleneGlycol'] = EthyleneGlycol_mat()
+    mat_lib['AluminumOxide'] = AluminumOxide_mat()
+    mat_lib['V4Cr4Ti']= V4Cr4Ti_mat()
+    mat_lib['ZrH2']= ZrH2_mat()
+    mat_lib['Inconel718']= Inconel718_mat()
     
     # remove lib
     try: 
