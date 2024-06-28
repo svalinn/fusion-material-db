@@ -15,8 +15,10 @@ from pyne.material_library import MaterialLibrary
 #
 #
 
-def make_mat(nucvec, density, citation):
+def make_mat(nucvec, density, citation, molecular_mass = None):
     mat = Material(nucvec, density = density, metadata = {'citation' : citation})
+    if molecular_mass:
+        mat.molecular_mass = molecular_mass
     return mat.expand_elements()
 
 def make_mat_from_atom(atom_frac, density, citation):
@@ -459,7 +461,8 @@ def main():
     # get material definition
     for mat_name, mat_input in mat_data.items():
         if 'nucvec' in mat_input:
-            mat_lib[mat_name] = make_mat(mat_input['nucvec'], mat_input['density'], mat_input['citation'])
+            mat_lib[mat_name] = make_mat(mat_input['nucvec'], mat_input['density'], mat_input['citation'], 
+                                         mat_input.get('molecular_mass'))
         if 'atom_frac' in mat_input:
             mat_lib[mat_name] = make_mat_from_atom(mat_input['atom_frac'], mat_input['density'], mat_input['citation'])
     
