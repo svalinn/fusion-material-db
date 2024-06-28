@@ -48,7 +48,7 @@ def HT9_mat():
     HT9 = Material(nucvec)
     HT9.density = 7.8  # density BCSSvol2 pdf page 32 and page 49
     HT9 = HT9.expand_elements()
-    HT9.metadata["citation"] = "KluehJNM_2000 and SmithBCSSANLvol2_1984"
+    HT9.metadata["citation"] = "ChenNucEngTech_2013 and SmithBCSSANLvol2_1984"
     return HT9
 
 
@@ -332,7 +332,7 @@ def D2O_mat():
 
 
 # fullreference: WidodoJoPCS_2018 Journal of Physics Conference Series doi:10.1088/1742-6596/962/1/012039 and KTA Standards 1986
-# also reference: pnnl-15870rev1
+# reference: pnnl-15870rev1
 def HeNIST_mat():
     nucvec = {20000000: 100}
     HeNIST = Material(nucvec)
@@ -507,17 +507,16 @@ def Be12Ti_mat():
     return Be12Ti
 
 
-# reference:  HernandezFusEngDes_2018
 # Looks like Be17Ti can be found in different lattice phases- hexagonal seems more common this has a slight impact on density less than 0.1 g/cm3
 # There does seem to be some dipscrepancy on the density depedning on source but it is less than .1 g/cm3
-# Zalkin A., Sands D.E., Bedford R.G.: The beryllides of Ti, V, Cr, Zr, Nb, Mo, Hf, and Ta. Acta Crystallographica 14 (1961) 63-65
-# https://materials.springer.com/isp/crystallographic/docs/sd_0451341 or https://journals.iucr.org/paper?S0365110X64001906
+# fullreference: VillarsSpringerMaterials_2022 "Ti2Be17 (Be17Ti2 hex) Crystal Structure: Datasheet from ``PAULING FILE Multinaries Edition -- 2022'' in SpringerMaterials https://materials.springer.com/isp/crystallographic/docs/sd_0451341
+# fullreference: ZalkinActaCryst_1964 Zalkin A., Sands D.E., Bedford R.G.: The beryllides of Ti, V, Cr, Zr, Nb, Mo, Hf, and Ta. Acta Crystallographica 14 (1961) 63-65 https://journals.iucr.org/paper?S0365110X64001906
 def Be17Ti2_mat():
     Be17Ti2 = Material()
     Be17Ti2.from_atom_frac({40000000: 17, 220000000: 2})
     Be17Ti2.density = 2.41
     Be17Ti2 = Be17Ti2.expand_elements()
-    Be17Ti2.metadata["citation"] = "SpringerMaterials"
+    Be17Ti2.metadata["citation"] = "VillarsSpringerMaterials_2022"
     return Be17Ti2
 
 
@@ -569,26 +568,23 @@ def Be12Cr_mat():
     return Be12Cr
 
 
-# reference:
-# Gaisin, Ramil, et al. “Beryllium Intermetallics: Industrial experience on development and manufacture.” Nuclear Materials and Energy, vol. 35, June 2023, p. 101444,
-# https://doi.org/10.1016/j.nme.2023.101444.
+# fullreference: GaisinNuclearMaterialsEnergy_2023 Gaisin, Ramil, et al. “Beryllium Intermetallics: Industrial experience on development and manufacture.” Nuclear Materials and Energy, vol. 35, June 2023, p. 101444, https://doi.org/10.1016/j.nme.2023.101444.
 def Be17Ta2_mat():
     Be17Ta2 = Material()
     Be17Ta2.from_atom_frac({40000000: 17, 730000000: 2})
     Be17Ta2.density = 5.05
     Be17Ta2 = Be17Ta2.expand_elements()
-    Be17Ta2.metadata["citation"] = "BerylliumIntermetallics_2023"
+    Be17Ta2.metadata["citation"] = "GaisinNuclearMaterialsEnergy_2023"
     return Be17Ta2
 
 
-# reference:
-# F.W. von Batchelder and R.F. Raeuchle. The structure of a new series of m be12 compounds. Acta Crystallographica (1,1948-23,1967), 10:648–649, 1957.
+# fullreference: vonBatchelderActaCryst_1957 F.W. von Batchelder and R.F. Raeuchle. The structure of a new series of m be12 compounds. Acta Crystallographica (1,1948-23,1967), 10:648–649, 1957. https://journals.iucr.org/paper?S0365110X5700225X
 def Be12Ta_mat():
     Be12Ta = Material()
-    Be12Ta.from_atom_frac({40000000: 13, 730000000: 1})
+    Be12Ta.from_atom_frac({40000000: 12, 730000000: 1})
     Be12Ta.density = 4.27
     Be12Ta = Be12Ta.expand_elements()
-    Be12Ta.metadata["citation"] = "SeriesofMBe12_1957"
+    Be12Ta.metadata["citation"] = "vonBatchelderActaCryst_1957"
     return Be12Ta
 
 
@@ -596,74 +592,73 @@ def Be12Ta_mat():
 # F.W. von Batchelder and R.F. Raeuchle. The structure of a new series of m be12 compounds. Acta Crystallographica (1,1948-23,1967), 10:648–649, 1957.
 def Be12Fe_mat():
     Be12Fe = Material()
-    Be12Fe.from_atom_frac({40000000: 13, 260000000: 1})
+    Be12Fe.from_atom_frac({40000000: 12, 260000000: 1})
     Be12Fe.density = 2.45
     Be12Fe = Be12Fe.expand_elements()
-    Be12Fe.metadata["citation"] = "SeriesofMBe12_1957"
+    Be12Fe.metadata["citation"] = "vonBatchelderActaCryst_1957"
     return Be12Fe
 
 
 # Pb solid neutron multipliers
 
-
 # reference:
 # F.A. Hernandez, P. Pereslavtsev, Fusion Engineering and Design vol. 137, 2018
 # https://doi.org/10.1016/j.fusengdes.2018.09.014
 def LaPb3_mat():
-    Be12Fe = Material()
-    Be12Fe.from_atom_frac({570000000: 1, 820000000: 3})
-    Be12Fe.density = 10.72
-    Be12Fe = Be12Fe.expand_elements()
-    Be12Fe.metadata["citation"] = "HernandezFusEngDes_2018"
-    return Be12Fe
+    LaPb3 = Material()
+    LaPb3.from_atom_frac({570000000: 1, 820000000: 3})
+    LaPb3.density = 10.72
+    LaPb3 = LaPb3.expand_elements()
+    LaPb3.metadata["citation"] = "HernandezFusEngDes_2018"
+    return LaPb3
 
 
 # reference:
 # F.A. Hernandez, P. Pereslavtsev, Fusion Engineering and Design vol. 137, 2018
 # https://doi.org/10.1016/j.fusengdes.2018.09.014
 def YPb3_mat():
-    Be12Fe = Material()
-    Be12Fe.from_atom_frac({390000000: 1, 820000000: 3})
-    Be12Fe.density = 10.58
-    Be12Fe = Be12Fe.expand_elements()
-    Be12Fe.metadata["citation"] = "HernandezFusEngDes_2018"
-    return Be12Fe
+    YPb3 = Material()
+    YPb3.from_atom_frac({390000000: 1, 820000000: 3})
+    YPb3.density = 10.58
+    YPb3 = YPb3.expand_elements()
+    YPb3.metadata["citation"] = "HernandezFusEngDes_2018"
+    return YPb3
 
 
 # reference:
 # F.A. Hernandez, P. Pereslavtsev, Fusion Engineering and Design vol. 137, 2018
 # https://doi.org/10.1016/j.fusengdes.2018.09.014
 def YPb2_mat():
-    Be12Fe = Material()
-    Be12Fe.from_atom_frac({390000000: 1, 820000000: 2})
-    Be12Fe.density = 10.03
-    Be12Fe = Be12Fe.expand_elements()
-    Be12Fe.metadata["citation"] = "HernandezFusEngDes_2018"
-    return Be12Fe
+    YPb2 = Material()
+    YPb2.from_atom_frac({390000000: 1, 820000000: 2})
+    YPb2.density = 10.03
+    YPb2 = YPb2.expand_elements()
+    YPb2.metadata["citation"] = "HernandezFusEngDes_2018"
+    return YPb2
 
 
 # reference:
 # F.A. Hernandez, P. Pereslavtsev, Fusion Engineering and Design vol. 137, 2018
 # https://doi.org/10.1016/j.fusengdes.2018.09.014
 def Zr5Pb4_mat():
-    Be12Fe = Material()
-    Be12Fe.from_atom_frac({400000000: 5, 820000000: 4})
-    Be12Fe.density = 10.33
-    Be12Fe = Be12Fe.expand_elements()
-    Be12Fe.metadata["citation"] = "HernandezFusEngDes_2018"
-    return Be12Fe
+    Zr5Pb4 = Material()
+    Zr5Pb4.from_atom_frac({400000000: 5, 820000000: 4})
+    Zr5Pb4.density = 10.33
+    Zr5Pb4 = Zr5Pb4.expand_elements()
+    Zr5Pb4.metadata["citation"] = "HernandezFusEngDes_2018"
+    return Zr5Pb4
 
 
 # reference:
 # F.A. Hernandez, P. Pereslavtsev, Fusion Engineering and Design vol. 137, 2018
 # https://doi.org/10.1016/j.fusengdes.2018.09.014
 def Zr5Pb3_mat():
-    Be12Fe = Material()
-    Be12Fe.from_atom_frac({400000000: 5, 260000000: 4})
-    Be12Fe.density = 9.69
-    Be12Fe = Be12Fe.expand_elements()
-    Be12Fe.metadata["citation"] = "HernandezFusEngDes_2018"
-    return Be12Fe
+    Zr5Pb3 = Material()
+    Zr5Pb3.from_atom_frac({400000000: 5, 820000000: 3})
+    Zr5Pb3.density = 9.69
+    Zr5Pb3 = Zr5Pb3.expand_elements()
+    Zr5Pb3.metadata["citation"] = "HernandezFusEngDes_2018"
+    return Zr5Pb3
 
 
 # Li ceramics
@@ -686,7 +681,7 @@ def Li4SiO4nat_mat():
 def Li2TiO3nat_mat():
     Li2TiO3nat = Material()
     Li2TiO3nat.from_atom_frac({30000000: 2, 80000000: 3, 220000000: 1})
-    Li2TiO3nat.density = 3.43  # This migh of been always wrong need to check- it was :(
+    Li2TiO3nat.density = 3.43
     Li2TiO3nat = Li2TiO3nat.expand_elements()
     Li2TiO3nat.metadata["citation"] = "HernandezFusEngDes_2018"
     return Li2TiO3nat
@@ -774,8 +769,8 @@ def Li8ZrO6Li60_mat():
     return Li8ZrO6Li60
 
 
-# reference: Van Der Laan, J., Reimann, J., & Fedorov, A. (2016). Ceramic Breeder Materials. In Elsevier eBooks (pp. 114–175)
-# https://doi.org/10.1016/b978-0-12-803581-8.00733-5
+# fullreference: VanderLaanCeramicBreederMaterials_2016 Van Der Laan, J., Reimann, J., & Fedorov, A. (2016). Ceramic Breeder Materials. 
+# In Elsevier eBooks (pp. 114–175) https://doi.org/10.1016/b978-0-12-803581-8.00733-5
 def Li2Onat_mat():
     Li2Onat = Material()
     Li2Onat.from_atom_frac({30000000: 2, 80000000: 1})
@@ -796,7 +791,8 @@ def Li2OLi60_mat():
     return Li2OLi60
 
 
-# fullreference: SohalINLEXT-10-18297_2013 M. Sohal et al., "Engineering Database of Liquid Salt Thermophysical and Thermochemical Properties", INL/EXT-10-18297, June 2013. https://inldigitallibrary.inl.gov/sites/STI/STI/5698704.pdf
+# fullreference: SohalINLEXT-10-18297_2013 M. Sohal et al., "Engineering Database of Liquid Salt Thermophysical and Thermochemical Properties", INL/EXT-10-18297, June 2013.
+# https://inldigitallibrary.inl.gov/sites/STI/STI/5698704.pdf
 def FlibeNat_mat():
     FlibeNat = Material()
     FlibeNat.from_atom_frac({30000000: 2, 40000000: 1, 90000000: 4})
@@ -1019,7 +1015,7 @@ def main():
     mat_lib["Be12Cr"] = Be12Cr_mat()
     mat_lib["Be17Ta2"] = Be17Ta2_mat()
     mat_lib["Be12Ta"] = Be12Ta_mat()
-    mat_lib["Be12Fe"] = Be12Ta_mat()
+    mat_lib["Be12Fe"] = Be12Fe_mat()
     mat_lib["LaPb3"] = LaPb3_mat()
     mat_lib["YPb3"] = YPb3_mat()
     mat_lib["YPb2"] = YPb2_mat()
@@ -1056,6 +1052,7 @@ def main():
     # remove lib
     try:
         os.remove("PureFusionMaterials_libv1.h5")
+        os.remove("PureFusionMaterials_libv1.xml")
     except:
         pass
 
@@ -1064,8 +1061,8 @@ def main():
         "PureFusionMaterials_libv1.h5"
     )  # don't set datapath,nucpath...will be pyne default values
     # change datapath to be able to read with older version of uwuw_preproc
+    mat_lib.write_openmc("PureFusionMaterials_libv1.xml")
     # mat_lib.write_hdf5("PureFusionMaterials_libv1_old.h5",datapath='/materials', nucpath='/nucid')
-
     print("All done!")
 
 
