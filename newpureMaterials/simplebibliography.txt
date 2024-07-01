@@ -1,0 +1,30 @@
+     1 KluehJNM_2000 R.L. Klueh et al. jnm 2000 DOI:10.1016/S0022-3115(00)00060-X
+     2 ChenNucEngTech_2013 Y. Chen Nuclear and Engineering Technology, vol. 45, 2013. https://doi.org/10.5516/NET.07.2013.706
+     3 SmithBCSSANLvol2_1984, D.L. Smith et al., "Blanket Comparison and Selection Study Final Report", ANL/FPP-84-1, volume 2, Chapter 6, 1984. (HT-9 density pdf page 32 and 49)
+     4 MergiaJNM_2008 K. Mergia, N. Boukos jnm 2008 https://doi.org/10.1016/j.jnucmat.2007.03.267
+     5 CRChandbook64 Bulk density of WC: 64th CRC Handbook of Chemistry and Physics, B-152
+     6 pnnl-15870rev1 R.J. McConn, et al. "Compendium of Material Composition Data for Radiation Transport Modeling", PNNL-15870 Rev. 1, 2011.
+     7 BohmFusSciTec_2019 https://doi.org/10.1080/15361055.2019.1600930
+     8 MartelliFusEngDes_2019 https://doi.org/10.1016/j.fusengdes.2018.11.028
+     9 GilbertHandbookITERCCFE_2016 M. Gilbert, et al., "Handbook of activation, transmutation, and radiation damage properties of the elements and of ITER materials simulated using FISPACT-II & TENDL-2015; ITER FW armour focus", CCFE-R(16)37, September 2016. https://fispact.ukaea.uk/wp-content/uploads/2016/10/CCFE-R1637.pdf
+    10 ElGuebalyARIESCSFTI_2006 L. El-Guebaly, "Final Radial Build and Composition for LiPb/FS/He System", Sep. 2006. https://fti.neep.wisc.edu/fti.neep.wisc.edu/aries/BUILD-CS/build092606.pdf
+    11 HeizenroederComments2005 P. Heizenroeder and R. Reed "Comments on Selection of U.S. ITER CS Coil Jacket Material", Sep. 12, 2005
+    12 CRChandbook64 64th CRC Handbook of Chemistry and Physics page B-117, density at 4 K
+    13 JawadORNL_2005 M. Jawad et al. , "Development of a New Class of Fe-3Cr-W(V) Ferritic Steels for Industrial Process Applications", ORNL/TM-2005/82, 2005. https://doi.org/10.2172/838517
+    14 PintDOE_ER_0313_57_2014 B. Pint et al., DEVELOPMENT OF ODS FeCrAl FOR FUSION REACTOR APPLICATIONS, Fusion Reactor Materials Program Semi-annual Report, Dec. 2014, DOE/ER- 0313/57  Section 2.1, https://fmp.ornl.gov/semiannual-progress-reports/fusion-materials-semiannual-progress-report-57.pdf
+    15 WidodoJoPCS_2018 Journal of Physics Conference Series doi:10.1088/1742-6596/962/1/012039 and KTA Standards 1986
+    16 HernandezFusEngDes_2018 F.A. Hernandez, P. Pereslavtsev, Fusion Engineering and Design vol. 137, 2018 https://doi.org/10.1016/j.fusengdes.2018.09.014
+    17 SohalINLEXT-10-18297_2013 M. Sohal et al., "Engineering Database of Liquid Salt Thermophysical and Thermochemical Properties", INL/EXT-10-18297, June 2013. https://inldigitallibrary.inl.gov/sites/STI/STI/5698704.pdf
+    18 GrossbeckJNM_1998 M.L. Grossbeck et al.,"Analysis of V-Cr-Ti alloys in terms of activation of impurities", Journal of Nuclear Materials, vol. 258-263, page 1778-1783 1998. https://doi.org/10.1016/S0022-3115(98)00228-1
+    19 ARIES_PropertiesArchive http://qedfusion.org/LIB/PROPS/ 
+    20 MetalsHandbook_1979 Metals Handbook, Ninth Edition, Vol. 2: "Properties and SelectionNonferrous Alloys and Pure Metals," ASM, Metals Park OH (1979)
+    21 DavisFusEngDes_2018 https://doi.org/10.1016/j.fusengdes.2017.06.008
+    22 EliasUWFMD1424_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1424.pdf
+    23 MadaniUWFDM1423_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1423.pdf
+    24 EadeFusEngDes_2017 T. Eade et al., Fusion Engineering and Design 124 (2017) page 1241-1245 http://dx.doi.org/10.1016/j.fusengdes.2017.02.100
+    25 GilbertNucFus_2017 M. Gilbert et al., Nucl. Fusion 57 (2017) 046015 https://doi.org/10.1088/1741-4326/aa5bd7
+    26 ZhouEnergies_2023 G. Zhou et al., Energies 2023, 16, 5377 https://doi.org/10.3390/en16145377
+    27 SohalINLEXT-10-18297_2013 M. Sohal et al., "Engineering Database of Liquid Salt Thermophysical and Thermochemical Properties", INL/EXT-10-18297, June 2013. https://inldigitallibrary.inl.gov/sites/STI/STI/5698704.pdf
+    28 ElGuebalyFusSciTec_2017 https://doi.org/10.1080/15361055.2017.1333865
+    29 SchnabelNDS_2024 G. Schnabel et al., "FENDL: A Library for Fusion Research and Applications, Nuclear Data Sheets, vol. 193, pages 1-78, 2024. https://doi.org/10.1016/j.nds.2024.01.001
+    30 QiuNucMatEnergy_2018 https://doi.org/10.1016/j.nme.2018.04.009
