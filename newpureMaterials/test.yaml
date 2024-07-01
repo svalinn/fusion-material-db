@@ -1,0 +1,103 @@
+Water_mass_enrich:
+  nucvec:
+    10000000: 11.1894
+    80000000: 88.8106
+  density: 1.00
+  citation: 'pnnl-15870rev1'
+  mass_enrichment: 0.60
+
+Water_atom_enrich:
+  nucvec:
+    10000000: 11.1894
+    80000000: 88.8106
+  density: 1.00
+  citation: 'pnnl-15870rev1'
+  mass_enrichment: 0.60
+
+Li2TiO3_two:
+  atom_frac:
+    80000000: 3
+    220000000: 1
+    30000000: 2.0
+  density: 3.43
+  citation: 'HernandezFusEngDes_2018'
+  mass_enrichment: 0.60
+
+Li2TiO3_nat:
+  atom_frac:
+    80000000: 3
+    220000000: 1
+    30000000: 2.0
+  density: 3.43
+  citation: 'HernandezFusEngDes_2018'
+  mass_enrichment: 0.065
+
+Li2TiO3_m20:
+  nucvec:
+    80000000: 3
+    220000000: 1
+    30000000: 2.0
+  density: 3.43
+  citation: 'HernandezFusEngDes_2018'
+  mass_enrichment: 0.2
+
+Li2TiO3_mass:
+  nucvec:
+    30000000: 2
+    80000000: 3
+    220000000: 1
+  density: 3.43
+  citation: 'HernandezFusEngDes_2018'
+
+Li2TiO3nat:
+  atom_frac:
+    30000000: 2
+    80000000: 3
+    220000000: 1
+  density: 3.43
+  citation: 'HernandezFusEngDes_2018'
+
+Li4SiO4nat:
+  atom_frac:
+    30000000: 4
+    80000000: 4
+    140000000: 1
+  density: 2.40
+  citation: 'HernandezFusEngDes_2018'
+
+Li4SiO4_a20:
+  atom_frac:
+    30000000: 4
+    80000000: 4
+    140000000: 1
+  density: 2.40
+  citation: 'HernandezFusEngDes_2018'
+  mass_enrichment: 0.2
+
+Li4SiO4_m20:
+  nucvec:
+    30000000: 4
+    80000000: 4
+    140000000: 1
+  density: 2.40
+  citation: 'HernandezFusEngDes_2018'
+  mass_enrichment: 0.2
+
+Li4SiO4_m100:
+  nucvec:
+    30000000: 4
+    80000000: 4
+    140000000: 1
+  density: 2.40
+  citation: 'HernandezFusEngDes_2018'
+  mass_enrichment: 1.0
+
+Li4SiO4_a100:
+  atom_frac:
+    30000000: 4
+    80000000: 4
+    140000000: 1
+  density: 2.40
+  citation: 'HernandezFusEngDes_2018'
+  mass_enrichment: 1.0
+
