@@ -19,6 +19,10 @@ OUTPUT_HDF5 = "PureFusionMaterials_libv1.h5"
 OUTPUT_XML = "PureFusionMaterials_libv1.xml"
 OUTPUT_JSON = "PureFusionMaterials_libv1.json"
 
+#Logic for when material without lithium is attempting to be enriched
+#Comeback to later to see if there is a better option
+class MissingLithiumError(Exception):
+  pass
 
 def update_nucvec(
     nucvec: Dict[int, float], old_key: int, new_values: Dict[int, float]
@@ -40,6 +44,8 @@ def make_mat(
 ) -> Material:
     """Create a Material object from nuclear vector data."""
     if mass_enrichment is not None:
+        if 30000000 not in nucvec:
+            raise MissingLithiumError("This material does not contain lithium, cannot define material.")
         li_weight_fraction = Material(
             {"Li6": mass_enrichment, "Li7": 1.0 - mass_enrichment}
         )
@@ -68,11 +74,12 @@ def make_mat_from_atom(
 ) -> Material:
     """Create a Material object from atom fraction data."""
     if mass_enrichment is not None:
+        if 30000000 not in atom_frac:
+            raise MissingLithiumError("This material does not contain lithium, cannot define material.")
         li_weight_fraction = Material(
             {"Li6": mass_enrichment, "Li7": 1.0 - mass_enrichment}
         )
         atom_frac = update_atom_frac(atom_frac, 30000000, li_weight_fraction)
-
     mat = Material()
     mat.from_atom_frac(atom_frac)
     mat.density = density
@@ -94,6 +101,56 @@ mat_data: Dict[str, Dict[str, Any]] = {
         'nucvec' : {10000000: 11.1894, 80000000: 88.8106},
         "density": 1.00,
         "citation": 'pnnl-15870rev1',
+        "mass_enrichment": 0.60,
+    },
+    "Water_mass_enrich_mol": {
+        'nucvec' : {10000000: 11.1894, 80000000: 88.8106},
+        "density": 1.00,
+        "citation": 'pnnl-15870rev1',
+        "molecular_mass": 18.01528,
+        "mass_enrichment": 0.60,
+    },
+    "Water_mass_mol": {
+        'nucvec' : {10000000: 11.1894, 80000000: 88.8106},
+        "density": 1.00,
+        "citation": 'pnnl-15870rev1',
+        "molecular_mass": 18.01528,
+    },
+    "Pb157Li_nat": {
+        'nucvec' : {30000000: (0.4905+0.0545),820000000: 99.455},
+        "density": 9.32,
+        "citation": 'pnnl-15870rev1',
+        "molecular_mass": 175.6273,
+    },
+    "Pb157Li90": {
+        'nucvec' : {30060000: 0.4905, 30070000: 0.0545,820000000: 99.455},
+        "density": 9.32,
+        "citation": 'pnnl-15870rev1',
+        "molecular_mass": 175.6273,
+    },
+    "Pb157Li90_nomol": {
+        'nucvec' : {30060000: 0.4905, 30070000: 0.0545,820000000: 99.455},
+        "density": 9.32,
+        "citation": 'pnnl-15870rev1',
+    },
+    "Pb157Li90_wrong_mol": {
+        'nucvec' : {30060000: 0.4905, 30070000: 0.0545,820000000: 99.455},
+        "density": 9.32,
+        "citation": 'pnnl-15870rev1',
+        "molecular_mass": 132
+    },
+    "Pb157Li60_wrong": {
+        'nucvec' : {30060000: 0.4905, 30070000: 0.0545,820000000: 99.455},
+        "density": 9.32,
+        "citation": 'pnnl-15870rev1',
+        "molecular_mass": 175.6273,
+        "mass_enrichment": 0.60,
+    },
+    "Pb157Li60": {
+        'nucvec' : {30000000: (0.4905+0.0545),820000000: 99.455},
+        "density": 9.32,
+        "citation": 'pnnl-15870rev1',
+        "molecular_mass": 175.6273,
         "mass_enrichment": 0.60,
     },
     "Li2TiO3_two": {
@@ -162,22 +219,24 @@ def main():
     print("\nCreating Pure Fusion Materials...")
 
     for mat_name, mat_input in mat_data.items():
-        if "nucvec" in mat_input:
-            mat_lib[mat_name] = make_mat(
-                mat_input["nucvec"],
-                mat_input["density"],
-                mat_input["citation"],
-                mat_input.get("molecular_mass"),
-                mat_input.get("mass_enrichment"),
-            )
-        elif "atom_frac" in mat_input:
-            mat_lib[mat_name] = make_mat_from_atom(
-                mat_input["atom_frac"],
-                mat_input["density"],
-                mat_input["citation"],
-                mat_input.get("mass_enrichment"),
-            )
-
+        try:
+            if "nucvec" in mat_input:
+                mat_lib[mat_name] = make_mat(
+                    mat_input["nucvec"],
+                    mat_input["density"],
+                    mat_input["citation"],
+                    mat_input.get("molecular_mass"),
+                    mat_input.get("mass_enrichment"),
+                )
+            elif "atom_frac" in mat_input:
+                mat_lib[mat_name] = make_mat_from_atom(
+                    mat_input["atom_frac"],
+                    mat_input["density"],
+                    mat_input["citation"],
+                    mat_input.get("mass_enrichment"),
+                )
+        except MissingLithiumError as e:
+            print(f"Error: {e}. Skipping material {mat_name}.")
     # Remove existing files
     for filename in [OUTPUT_HDF5, OUTPUT_XML, OUTPUT_JSON]:
         try:

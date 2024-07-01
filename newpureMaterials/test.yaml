@@ -2,17 +2,87 @@ Water_mass_enrich:
   nucvec:
     10000000: 11.1894
     80000000: 88.8106
-  density: 1.00
-  citation: 'pnnl-15870rev1'
-  mass_enrichment: 0.60
+  density: 1.0
+  citation: pnnl-15870rev1
+  mass_enrichment: 0.6
 
 Water_atom_enrich:
   nucvec:
     10000000: 11.1894
     80000000: 88.8106
-  density: 1.00
-  citation: 'pnnl-15870rev1'
-  mass_enrichment: 0.60
+  density: 1.0
+  citation: pnnl-15870rev1
+  mass_enrichment: 0.6
+
+Water_mass_enrich_mol:
+  nucvec:
+    10000000: 11.1894
+    80000000: 88.8106
+  density: 1.0
+  citation: pnnl-15870rev1
+  molecular_mass: 18.01528
+  mass_enrichment: 0.6
+
+Water_mass_mol:
+  nucvec:
+    10000000: 11.1894
+    80000000: 88.8106
+  density: 1.0
+  citation: pnnl-15870rev1
+  molecular_mass: 18.01528
+
+Pb157Li_nat:
+  nucvec:
+    30000000: 0.545
+    820000000: 99.455
+  density: 9.32
+  citation: pnnl-15870rev1
+  molecular_mass: 175.6273
+
+Pb157Li90:
+  nucvec:
+    30060000: 0.4905
+    30070000: 0.0545
+    820000000: 99.455
+  density: 9.32
+  citation: pnnl-15870rev1
+  molecular_mass: 175.6273
+
+Pb157Li90_nomol:
+  nucvec:
+    30060000: 0.4905
+    30070000: 0.0545
+    820000000: 99.455
+  density: 9.32
+  citation: pnnl-15870rev1
+
+Pb157Li90_wrong_mol:
+  nucvec:
+    30060000: 0.4905
+    30070000: 0.0545
+    820000000: 99.455
+  density: 9.32
+  citation: pnnl-15870rev1
+  molecular_mass: 132.0
+
+Pb157Li60_wrong:
+  nucvec:
+    30060000: 0.4905
+    30070000: 0.0545
+    820000000: 99.455
+  density: 9.32
+  citation: pnnl-15870rev1
+  molecular_mass: 175.6273
+  mass_enrichment: 0.6
+
+Pb157Li60:
+  nucvec:
+    30000000: 0.545
+    820000000: 99.455
+  density: 9.32
+  citation: pnnl-15870rev1
+  molecular_mass: 175.6273
+  mass_enrichment: 0.6
 
 Li2TiO3_two:
   atom_frac:
@@ -20,8 +90,8 @@ Li2TiO3_two:
     220000000: 1
     30000000: 2.0
   density: 3.43
-  citation: 'HernandezFusEngDes_2018'
-  mass_enrichment: 0.60
+  citation: HernandezFusEngDes_2018
+  mass_enrichment: 0.6
 
 Li2TiO3_nat:
   atom_frac:
@@ -29,7 +99,7 @@ Li2TiO3_nat:
     220000000: 1
     30000000: 2.0
   density: 3.43
-  citation: 'HernandezFusEngDes_2018'
+  citation: HernandezFusEngDes_2018
   mass_enrichment: 0.065
 
 Li2TiO3_m20:
@@ -38,7 +108,7 @@ Li2TiO3_m20:
     220000000: 1
     30000000: 2.0
   density: 3.43
-  citation: 'HernandezFusEngDes_2018'
+  citation: HernandezFusEngDes_2018
   mass_enrichment: 0.2
 
 Li2TiO3_mass:
@@ -47,7 +117,7 @@ Li2TiO3_mass:
     80000000: 3
     220000000: 1
   density: 3.43
-  citation: 'HernandezFusEngDes_2018'
+  citation: HernandezFusEngDes_2018
 
 Li2TiO3nat:
   atom_frac:
@@ -55,23 +125,23 @@ Li2TiO3nat:
     80000000: 3
     220000000: 1
   density: 3.43
-  citation: 'HernandezFusEngDes_2018'
+  citation: HernandezFusEngDes_2018
 
 Li4SiO4nat:
   atom_frac:
     30000000: 4
     80000000: 4
     140000000: 1
-  density: 2.40
-  citation: 'HernandezFusEngDes_2018'
+  density: 2.4
+  citation: HernandezFusEngDes_2018
 
 Li4SiO4_a20:
   atom_frac:
     30000000: 4
     80000000: 4
     140000000: 1
-  density: 2.40
-  citation: 'HernandezFusEngDes_2018'
+  density: 2.4
+  citation: HernandezFusEngDes_2018
   mass_enrichment: 0.2
 
 Li4SiO4_m20:
@@ -79,8 +149,8 @@ Li4SiO4_m20:
     30000000: 4
     80000000: 4
     140000000: 1
-  density: 2.40
-  citation: 'HernandezFusEngDes_2018'
+  density: 2.4
+  citation: HernandezFusEngDes_2018
   mass_enrichment: 0.2
 
 Li4SiO4_m100:
@@ -88,8 +158,8 @@ Li4SiO4_m100:
     30000000: 4
     80000000: 4
     140000000: 1
-  density: 2.40
-  citation: 'HernandezFusEngDes_2018'
+  density: 2.4
+  citation: HernandezFusEngDes_2018
   mass_enrichment: 1.0
 
 Li4SiO4_a100:
@@ -97,7 +167,6 @@ Li4SiO4_a100:
     30000000: 4
     80000000: 4
     140000000: 1
-  density: 2.40
-  citation: 'HernandezFusEngDes_2018'
+  density: 2.4
+  citation: HernandezFusEngDes_2018
   mass_enrichment: 1.0
-

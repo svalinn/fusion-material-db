@@ -23,7 +23,11 @@ from pyne.material_library import MaterialLibrary
 OUTPUT_HDF5 = "test_yaml.h5"
 OUTPUT_XML = "test_yaml.xml"
 OUTPUT_JSON = "test_yaml.json"
-INPUT_FILE = "test.yaml"  # New constant for input JSON file
+INPUT_FILE = "test.yaml"  # Can take yaml or json input 
+
+
+class MissingLithiumError(Exception):
+  pass
 
 # Set up logging
 logging.basicConfig(
@@ -52,6 +56,8 @@ def make_mat(
 ) -> Material:
     """Create a Material object from nuclear vector data."""
     if mass_enrichment is not None:
+        if 30000000 not in nucvec:
+            raise MissingLithiumError("This material does not contain lithium, cannot define material.")
         li_weight_fraction = Material(
             {"Li6": mass_enrichment, "Li7": 1.0 - mass_enrichment}
         )
@@ -80,6 +86,8 @@ def make_mat_from_atom(
 ) -> Material:
     """Create a Material object from atom fraction data."""
     if mass_enrichment is not None:
+        if 30000000 not in atom_frac:
+            raise MissingLithiumError("This material does not contain lithium, cannot define material.")
         li_weight_fraction = Material(
             {"Li6": mass_enrichment, "Li7": 1.0 - mass_enrichment}
         )
@@ -115,22 +123,33 @@ def read_material_data(filename: str) -> Dict[str, Dict[str, Any]]:
         return {}
 
 
-def create_material(mat_name: str, mat_input: Dict[str, Any]) -> Material:
+def create_material(mat_name: str, mat_input: Dict[str, Any]) -> Optional[Material]:
     """Create a Material object based on the input data."""
-    if "atom_frac" in mat_input:
-        return make_mat_from_atom(
-            mat_input["atom_frac"],
-            mat_input["density"],
-            mat_input["citation"],
-            mat_input.get("mass_enrichment"),
-        )
-    else:
-        return make_mat(
-            mat_input["nucvec"],
-            mat_input["density"],
-            mat_input["citation"],
-            mass_enrichment=mat_input.get("mass_enrichment"),
-        )
+    try:
+        if "atom_frac" in mat_input:
+            return make_mat_from_atom(
+                mat_input["atom_frac"],
+                mat_input["density"],
+                mat_input["citation"],
+                mat_input.get("mass_enrichment"),
+            )
+        else:
+            return make_mat(
+                mat_input["nucvec"],
+                mat_input["density"],
+                mat_input["citation"],
+                mat_input.get("molecular_mass"),
+                mat_input.get("mass_enrichment"),
+            )
+    except MissingLithiumError as e:
+        logger.error(f"Missing lithium failed to create material {mat_name}: {str(e)}")
+        return None
+    except KeyError as e:
+        logger.error(f"Missing key in material {mat_name}: {str(e)}")
+        return None
+    except Exception as e:
+        logger.error(f"Error processing material {mat_name}: {str(e)}")
+        return None
 
 
 def main():
@@ -149,9 +168,9 @@ def main():
         logger.info(f"Processing material: {mat_name}")
         try:
             # Create material and add to library
-            mat_lib[mat_name] = create_material(mat_name, mat_input)
-        except KeyError as e:
-            logger.error(f"Missing key in material {mat_name}: {str(e)}")
+            material_obj = create_material(mat_name, mat_input)
+            if material_obj is not None:
+                mat_lib[mat_name] = material_obj
         except Exception as e:
             logger.error(f"Error processing material {mat_name}: {str(e)}")
 

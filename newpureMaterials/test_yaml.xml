@@ -1,6 +1,61 @@
 <?xml version="1.0"?>
 <materials>
-  <material id="9" name="Li4SiO4_a20" >
+  <material id="15" name="Li4SiO4_m100" >
+    <density value="2.4" units="g/cc" />
+    <nuclide name="Li6" ao="6.9954e-01" />
+    <nuclide name="O16" ao="2.6236e-01" />
+    <nuclide name="O17" ao="9.9940e-05" />
+    <nuclide name="O18" ao="5.3915e-04" />
+    <nuclide name="Si28" ao="3.4543e-02" />
+    <nuclide name="Si29" ao="1.7548e-03" />
+    <nuclide name="Si30" ao="1.1581e-03" />
+  </material>
+  <material id="1" name="Water_mass_mol" >
+    <density value="1." units="g/cc" />
+    <nuclide name="H1" ao="6.6658e-01" />
+    <nuclide name="H2" ao="7.6666e-05" />
+    <nuclide name="O16" ao="3.3253e-01" />
+    <nuclide name="O17" ao="1.2667e-04" />
+    <nuclide name="O18" ao="6.8335e-04" />
+  </material>
+  <material id="16" name="Li4SiO4_a100" >
+    <density value="2.4" units="g/cc" />
+    <nuclide name="Li6" ao="4.0000e+00" />
+    <nuclide name="O16" ao="3.9903e+00" />
+    <nuclide name="O17" ao="1.5200e-03" />
+    <nuclide name="O18" ao="8.2000e-03" />
+    <nuclide name="Si28" ao="9.2223e-01" />
+    <nuclide name="Si29" ao="4.6850e-02" />
+    <nuclide name="Si30" ao="3.0920e-02" />
+  </material>
+  <material id="2" name="Pb157Li_nat" >
+    <density value="9.32" units="g/cc" />
+    <nuclide name="Li6" ao="1.0672e-02" />
+    <nuclide name="Li7" ao="1.2994e-01" />
+    <nuclide name="Pb204" ao="1.2031e-02" />
+    <nuclide name="Pb206" ao="2.0711e-01" />
+    <nuclide name="Pb207" ao="1.8992e-01" />
+    <nuclide name="Pb208" ao="4.5032e-01" />
+  </material>
+  <material id="4" name="Pb157Li90_nomol" >
+    <density value="9.32" units="g/cc" />
+    <nuclide name="Li6" ao="1.4324e-01" />
+    <nuclide name="Li7" ao="1.3646e-02" />
+    <nuclide name="Pb204" ao="1.1804e-02" />
+    <nuclide name="Pb206" ao="2.0319e-01" />
+    <nuclide name="Pb207" ao="1.8633e-01" />
+    <nuclide name="Pb208" ao="4.4179e-01" />
+  </material>
+  <material id="6" name="Pb157Li60" >
+    <density value="9.32" units="g/cc" />
+    <nuclide name="Li6" ao="9.6151e-02" />
+    <nuclide name="Li7" ao="5.4956e-02" />
+    <nuclide name="Pb204" ao="1.1884e-02" />
+    <nuclide name="Pb206" ao="2.0458e-01" />
+    <nuclide name="Pb207" ao="1.8761e-01" />
+    <nuclide name="Pb208" ao="4.4482e-01" />
+  </material>
+  <material id="13" name="Li4SiO4_a20" >
     <density value="2.4" units="g/cc" />
     <nuclide name="Li6" ao="9.0306e-01" />
     <nuclide name="Li7" ao="3.0969e+00" />
@@ -11,44 +66,7 @@
     <nuclide name="Si29" ao="4.6850e-02" />
     <nuclide name="Si30" ao="3.0920e-02" />
   </material>
-  <material id="8" name="Li4SiO4nat" >
-    <density value="2.4" units="g/cc" />
-    <nuclide name="Li6" ao="3.0360e-01" />
-    <nuclide name="Li7" ao="3.6964e+00" />
-    <nuclide name="O16" ao="3.9903e+00" />
-    <nuclide name="O17" ao="1.5200e-03" />
-    <nuclide name="O18" ao="8.2000e-03" />
-    <nuclide name="Si28" ao="9.2223e-01" />
-    <nuclide name="Si29" ao="4.6850e-02" />
-    <nuclide name="Si30" ao="3.0920e-02" />
-  </material>
-  <material id="6" name="Li2TiO3_mass" >
-    <density value="3.43" units="g/cc" />
-    <nuclide name="Li6" ao="4.4047e-02" />
-    <nuclide name="Li7" ao="5.3629e-01" />
-    <nuclide name="O16" ao="3.7668e-01" />
-    <nuclide name="O17" ao="1.4349e-04" />
-    <nuclide name="O18" ao="7.7407e-04" />
-    <nuclide name="Ti46" ao="3.4708e-03" />
-    <nuclide name="Ti47" ao="3.1300e-03" />
-    <nuclide name="Ti48" ao="3.1014e-02" />
-    <nuclide name="Ti49" ao="2.2760e-03" />
-    <nuclide name="Ti50" ao="2.1792e-03" />
-  </material>
-  <material id="5" name="Li2TiO3_m20" >
-    <density value="3.43" units="g/cc" />
-    <nuclide name="Li6" ao="1.3222e-01" />
-    <nuclide name="Li7" ao="4.5343e-01" />
-    <nuclide name="O16" ao="3.7191e-01" />
-    <nuclide name="O17" ao="1.4167e-04" />
-    <nuclide name="O18" ao="7.6427e-04" />
-    <nuclide name="Ti46" ao="3.4269e-03" />
-    <nuclide name="Ti47" ao="3.0904e-03" />
-    <nuclide name="Ti48" ao="3.0622e-02" />
-    <nuclide name="Ti49" ao="2.2472e-03" />
-    <nuclide name="Ti50" ao="2.1517e-03" />
-  </material>
-  <material id="10" name="Li4SiO4_m20" >
+  <material id="14" name="Li4SiO4_m20" >
     <density value="2.4" units="g/cc" />
     <nuclide name="Li6" ao="1.5205e-01" />
     <nuclide name="Li7" ao="5.2143e-01" />
@@ -59,30 +77,7 @@
     <nuclide name="Si29" ao="1.9070e-03" />
     <nuclide name="Si30" ao="1.2586e-03" />
   </material>
-  <material id="4" name="Li2TiO3_nat" >
-    <density value="3.43" units="g/cc" />
-    <nuclide name="Li6" ao="1.5001e-01" />
-    <nuclide name="Li7" ao="1.8500e+00" />
-    <nuclide name="O16" ao="2.9927e+00" />
-    <nuclide name="O17" ao="1.1400e-03" />
-    <nuclide name="O18" ao="6.1500e-03" />
-    <nuclide name="Ti46" ao="8.2500e-02" />
-    <nuclide name="Ti47" ao="7.4400e-02" />
-    <nuclide name="Ti48" ao="7.3720e-01" />
-    <nuclide name="Ti49" ao="5.4100e-02" />
-    <nuclide name="Ti50" ao="5.1800e-02" />
-  </material>
-  <material id="12" name="Li4SiO4_a100" >
-    <density value="2.4" units="g/cc" />
-    <nuclide name="Li6" ao="4.0000e+00" />
-    <nuclide name="O16" ao="3.9903e+00" />
-    <nuclide name="O17" ao="1.5200e-03" />
-    <nuclide name="O18" ao="8.2000e-03" />
-    <nuclide name="Si28" ao="9.2223e-01" />
-    <nuclide name="Si29" ao="4.6850e-02" />
-    <nuclide name="Si30" ao="3.0920e-02" />
-  </material>
-  <material id="3" name="Li2TiO3_two" >
+  <material id="7" name="Li2TiO3_two" >
     <density value="3.43" units="g/cc" />
     <nuclide name="Li6" ao="1.2726e+00" />
     <nuclide name="Li7" ao="7.2738e-01" />
@@ -95,25 +90,75 @@
     <nuclide name="Ti49" ao="5.4100e-02" />
     <nuclide name="Ti50" ao="5.1800e-02" />
   </material>
-  <material id="11" name="Li4SiO4_m100" >
+  <material id="3" name="Pb157Li90" >
+    <density value="9.32" units="g/cc" />
+    <nuclide name="Li6" ao="1.4324e-01" />
+    <nuclide name="Li7" ao="1.3646e-02" />
+    <nuclide name="Pb204" ao="1.1804e-02" />
+    <nuclide name="Pb206" ao="2.0319e-01" />
+    <nuclide name="Pb207" ao="1.8633e-01" />
+    <nuclide name="Pb208" ao="4.4179e-01" />
+  </material>
+  <material id="8" name="Li2TiO3_nat" >
+    <density value="3.43" units="g/cc" />
+    <nuclide name="Li6" ao="1.5001e-01" />
+    <nuclide name="Li7" ao="1.8500e+00" />
+    <nuclide name="O16" ao="2.9927e+00" />
+    <nuclide name="O17" ao="1.1400e-03" />
+    <nuclide name="O18" ao="6.1500e-03" />
+    <nuclide name="Ti46" ao="8.2500e-02" />
+    <nuclide name="Ti47" ao="7.4400e-02" />
+    <nuclide name="Ti48" ao="7.3720e-01" />
+    <nuclide name="Ti49" ao="5.4100e-02" />
+    <nuclide name="Ti50" ao="5.1800e-02" />
+  </material>
+  <material id="5" name="Pb157Li90_wrong_mol" >
+    <density value="9.32" units="g/cc" />
+    <nuclide name="Li6" ao="1.4324e-01" />
+    <nuclide name="Li7" ao="1.3646e-02" />
+    <nuclide name="Pb204" ao="1.1804e-02" />
+    <nuclide name="Pb206" ao="2.0319e-01" />
+    <nuclide name="Pb207" ao="1.8633e-01" />
+    <nuclide name="Pb208" ao="4.4179e-01" />
+  </material>
+  <material id="10" name="Li2TiO3_mass" >
+    <density value="3.43" units="g/cc" />
+    <nuclide name="Li6" ao="4.4047e-02" />
+    <nuclide name="Li7" ao="5.3629e-01" />
+    <nuclide name="O16" ao="3.7668e-01" />
+    <nuclide name="O17" ao="1.4349e-04" />
+    <nuclide name="O18" ao="7.7407e-04" />
+    <nuclide name="Ti46" ao="3.4708e-03" />
+    <nuclide name="Ti47" ao="3.1300e-03" />
+    <nuclide name="Ti48" ao="3.1014e-02" />
+    <nuclide name="Ti49" ao="2.2760e-03" />
+    <nuclide name="Ti50" ao="2.1792e-03" />
+  </material>
+  <material id="12" name="Li4SiO4nat" >
     <density value="2.4" units="g/cc" />
-    <nuclide name="Li6" ao="6.9954e-01" />
-    <nuclide name="O16" ao="2.6236e-01" />
-    <nuclide name="O17" ao="9.9940e-05" />
-    <nuclide name="O18" ao="5.3915e-04" />
-    <nuclide name="Si28" ao="3.4543e-02" />
-    <nuclide name="Si29" ao="1.7548e-03" />
-    <nuclide name="Si30" ao="1.1581e-03" />
+    <nuclide name="Li6" ao="3.0360e-01" />
+    <nuclide name="Li7" ao="3.6964e+00" />
+    <nuclide name="O16" ao="3.9903e+00" />
+    <nuclide name="O17" ao="1.5200e-03" />
+    <nuclide name="O18" ao="8.2000e-03" />
+    <nuclide name="Si28" ao="9.2223e-01" />
+    <nuclide name="Si29" ao="4.6850e-02" />
+    <nuclide name="Si30" ao="3.0920e-02" />
   </material>
-  <material id="2" name="Water_atom_enrich" >
-    <density value="1." units="g/cc" />
-    <nuclide name="H1" ao="6.6658e-01" />
-    <nuclide name="H2" ao="7.6666e-05" />
-    <nuclide name="O16" ao="3.3253e-01" />
-    <nuclide name="O17" ao="1.2667e-04" />
-    <nuclide name="O18" ao="6.8335e-04" />
+  <material id="9" name="Li2TiO3_m20" >
+    <density value="3.43" units="g/cc" />
+    <nuclide name="Li6" ao="1.3222e-01" />
+    <nuclide name="Li7" ao="4.5343e-01" />
+    <nuclide name="O16" ao="3.7191e-01" />
+    <nuclide name="O17" ao="1.4167e-04" />
+    <nuclide name="O18" ao="7.6427e-04" />
+    <nuclide name="Ti46" ao="3.4269e-03" />
+    <nuclide name="Ti47" ao="3.0904e-03" />
+    <nuclide name="Ti48" ao="3.0622e-02" />
+    <nuclide name="Ti49" ao="2.2472e-03" />
+    <nuclide name="Ti50" ao="2.1517e-03" />
   </material>
-  <material id="7" name="Li2TiO3nat" >
+  <material id="11" name="Li2TiO3nat" >
     <density value="3.43" units="g/cc" />
     <nuclide name="Li6" ao="1.5180e-01" />
     <nuclide name="Li7" ao="1.8482e+00" />
@@ -125,13 +170,5 @@
     <nuclide name="Ti48" ao="7.3720e-01" />
     <nuclide name="Ti49" ao="5.4100e-02" />
     <nuclide name="Ti50" ao="5.1800e-02" />
-  </material>
-  <material id="1" name="Water_mass_enrich" >
-    <density value="1." units="g/cc" />
-    <nuclide name="H1" ao="6.6658e-01" />
-    <nuclide name="H2" ao="7.6666e-05" />
-    <nuclide name="O16" ao="3.3253e-01" />
-    <nuclide name="O17" ao="1.2667e-04" />
-    <nuclide name="O18" ao="6.8335e-04" />
   </material>
 </materials>
