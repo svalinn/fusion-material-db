@@ -6,61 +6,26 @@
 # -can be used for mixing homogenized regions
 # -generally impurities at <~1e-3 wt. percent (10 wppm) are removed from materials
 #   (except SS-316 steels may contain boron impurity)
-#
+# 
 #
 import os
 from pyne import material
 from pyne.material import Material, MultiMaterial
 from pyne.material_library import MaterialLibrary
-
 #
 #
 
-def update_nucvec(nucvec, old_key, new_values):
-    if old_key not in nucvec:
-        return nucvec
-    
-    fract = nucvec.pop(old_key)
-    
-    for key, value in new_values.items():
-        nucvec[key] = value * fract
-    
-    return nucvec
-
-def make_mat(nucvec, density, citation, molecular_mass=None, mass_enrichment=None):
-    if mass_enrichment is not None:
-        if 30000000 not in nucvec:
-            raise ValueError("This material does not contain lithium")
-        liXweightfraction = Material(
-            {"Li6": mass_enrichment, "Li7": (1.0 - mass_enrichment)}
-        )
-        # liXweightfraction =liXweightfraction.expand_elements()
-        nucvec = update_nucvec(nucvec, 30000000, liXweightfraction.comp)
-    mat = Material(nucvec, density=density, metadata={"citation": citation})
+def make_mat(nucvec, density, citation, molecular_mass = None):
+    mat = Material(nucvec, density = density, metadata = {'citation' : citation})
     if molecular_mass:
         mat.molecular_mass = molecular_mass
     return mat.expand_elements()
 
-
-def update_atom_frac(atom_frac, old_key, new_values):
-    if old_key in atom_frac:
-        atom_frac[new_values] = atom_frac[old_key]
-        del atom_frac[old_key]
-    return atom_frac
-
-
-def make_mat_from_atom(atom_frac, density, citation, mass_enrichment=None):
-    if mass_enrichment is not None:
-        if 30000000 not in atom_frac:
-            raise ValueError("This material does not contain lithium")
-        liXweightfraction = Material(
-            {"Li6": mass_enrichment, "Li7": (1.0 - mass_enrichment)}
-        )
-        atom_frac = update_atom_frac(atom_frac, 30000000, liXweightfraction)
+def make_mat_from_atom(atom_frac, density, citation):
     mat = Material()
     mat.from_atom_frac(atom_frac)
     mat.density = density
-    mat.metadata["citation"] = citation
+    mat.metadata['citation'] = citation
     return mat.expand_elements()
 
 mat_data = {}
@@ -136,7 +101,7 @@ mat_data['SS316LNIG'] = {
 # added 10 wppm B which is important to assess typical He production level
 mat_data['SS316L'] = {
     'nucvec' : {50000000:0.001, 60000000:0.03, 140000000:1.0, 150000000:0.045, 160000000:0.03, 240000000:17, 250000000:2, 260000000:65.394, 280000000:12, 420000000:2.5},
-    'density' : 8.00,
+    density : 8.00,
     'citation' : 'pnnl-15870rev1'
     }
 
@@ -491,30 +456,19 @@ mat_data['WC'] = {
 def main():
     # create material library object
     mat_lib = MaterialLibrary()
-    print("\n Creating Pure Fusion Materials...")
+    print( "\n Creating Pure Fusion Materials...")
     #
     # get material definition
     for mat_name, mat_input in mat_data.items():
-        if "nucvec" in mat_input:
-            mat_lib[mat_name] = make_mat(
-                mat_input["nucvec"],
-                mat_input["density"],
-                mat_input["citation"],
-                mat_input.get("molecular_mass"),
-                mat_input.get("mass_enrichment"),
-            )
-        if "atom_frac" in mat_input:
-            mat_lib[mat_name] = make_mat_from_atom(
-                mat_input["atom_frac"],
-                mat_input["density"],
-                mat_input["citation"],
-                mat_input.get("mass_enrichment"),
-            )
+        if 'nucvec' in mat_input:
+            mat_lib[mat_name] = make_mat(mat_input['nucvec'], mat_input['density'], mat_input['citation'], 
+                                         mat_input.get('molecular_mass'))
+        if 'atom_frac' in mat_input:
+            mat_lib[mat_name] = make_mat_from_atom(mat_input['atom_frac'], mat_input['density'], mat_input['citation'])
+    
     # remove lib
     try: 
         os.remove("PureFusionMaterials_libv1.h5")
-        os.remove("PureFusionMaterials_libv1.xml")
-        os.remove("PureFusionMaterials_libv1.json")
     except: 
         pass  
         
@@ -522,8 +476,7 @@ def main():
     mat_lib.write_hdf5("PureFusionMaterials_libv1.h5") # don't set datapath,nucpath...will be pyne default values
     # change datapath to be able to read with older version of uwuw_preproc
     #mat_lib.write_hdf5("PureFusionMaterials_libv1_old.h5",datapath='/materials', nucpath='/nucid')
-    mat_lib.write_openmc("PureFusionMaterials_libv1.xml")
-    mat_lib.write_json("PureFusionMaterials_libv1.json")
+
     print("All done!")
     
     
