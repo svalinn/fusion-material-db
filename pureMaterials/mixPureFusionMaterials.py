@@ -1,344 +1,208 @@
-#! /usr/bin/python
+#!/usr/bin/env python3
 #
-# -updated for python3 (print) and updated for changes in python modules
-#
-#
-# mixes pure fusion materials based on FESS-FNSF, ARIES, EUDEMO and other designs
-# -can be used for mixing homogenized regions
-#
-# Improvements to make:
-# -should use a function to create the constituent citation list for each mixture
-#
-#
+# Updated for Python 3
+# Script for mixing pure fusion materials based on FESS-FNSF, ARIES, EUDEMO, and other designs.
+# Can be used for mixing homogenized regions.
+
 import os
+import logging
+from typing import Dict, Any
 from pyne import material
 from pyne.material import Material, MultiMaterial
 from pyne.material_library import MaterialLibrary
-#
-# Load material library (created using pyne)
 
-def load_matlib():
-    mat_lib=MaterialLibrary()
-    mat_lib.from_hdf5("PureFusionMaterials_libv1.h5", datapath='/materials') # don't set datapath,nucpath...will be pyne default values *** need to indicate datapath in new pyne now
-    return mat_lib
-   
-# Mix Materials by Volume
+# Constants
+OUTPUT_HDF5 = "mixPureFusionMaterials_libv1.h5"
+OUTPUT_XML = "mixPureFusionMaterials_libv1.xml"
+OUTPUT_JSON = "mixPureFusionMaterials_libv1.json"
 
-"""
-FNSFFW    (34% FS MF82H, 66% He)
-"""
-# fullreference: DavisFusEngDes_2018 https://doi.org/10.1016/j.fusengdes.2017.06.008
-def mix_FNSFFW(material_library):
-    mix=MultiMaterial({material_library['MF82H']:0.34,material_library['HeT410P80']:0.66})
-    FNSFFW_mat=mix.mix_by_volume()
-    FNSFFW_mat.metadata['mat_number']=9
-    FNSFFW_mat.metadata['mixturecitation']='DavisFusEngDes_2018'
-    constituentCitationList=[str(material_library['MF82H'].metadata['citation']),str(material_library['HeT410P80'].metadata['citation'])]
-    constituentCitation=" ".join(constituentCitationList)
-    FNSFFW_mat.metadata['constituentcitation']=constituentCitation
-    print('FNSFFW_mat  ', FNSFFW_mat.metadata['mat_number'], FNSFFW_mat.density)
-    print("   Constituent Citations: ", constituentCitation)
-    FNSFFW_mat=FNSFFW_mat.expand_elements()
-    return FNSFFW_mat
+# Set up logging
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
-"""
-FNSFFWstruct    (100% FS MF82H)
-"""
-def mix_FNSFFWstruct(material_library):
-    mix=MultiMaterial({material_library['MF82H']:1.00})
-    FNSFFWstruct_mat=mix.mix_by_volume()
-    FNSFFWstruct_mat.metadata['mat_number']=26
-    FNSFFWstruct_mat.metadata['mixturecitation']='DavisFusEngDes_2018'
-    print('FNSFFWstruct_mat  ', FNSFFWstruct_mat.metadata['mat_number'], FNSFFWstruct_mat.density)
-    FNSFFWstruct_mat=FNSFFWstruct_mat.expand_elements()
-    return FNSFFWstruct_mat
 
-"""
-response function material reIron (100% Iron)
-"""
-def mix_reIron(material_library):
-    mix=MultiMaterial({material_library['Fe']:1.00})
-    reIron_mat=mix.mix_by_volume()
-    reIron_mat.metadata['mat_number']=312
-    reIron_mat.metadata['mixturecitation']=str(material_library['Fe'].metadata['citation'])
-    print('reIron_mat  ', reIron_mat.metadata['mat_number'], reIron_mat.density) 
-    reIron_mat=reIron_mat.expand_elements()
-    return reIron_mat
-#
-# blanket materials
+def get_constituent_citations(materials) -> str:
+    citations = [mat.metadata.get("citation", "Unknown") for mat in materials]
+    return ", ".join(citations)
 
-#FNSF OB DCLL Blanket (73.7% LiPb (90% Li-6), 14.9% He/void, 7.5% FS, 3.9% SiC)
-# fullreference: EliasUWFMD1424_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1424.pdf
-#FNSF IB DCLL Blanket (80% LiPb (90% Li-6), 12% He/void, 5% FS, 3% SiC)
-# fullreference: MadaniUWFDM1423_2015 https://fti.neep.wisc.edu/fti.neep.wisc.edu/pdf/fdm1423.pdf
 
-# FNSF DCLL approximate average    77%                  13.5%        6%  3.5%
+def mix_by_volume(
+    material_library: MaterialLibrary, vol_fracs: Dict[str, float], citation: str
+) -> Material:
+    """
+    Mixes materials by volume, adds list of constituent citations to the metadata.
 
-"""
-FNSFDCLL 77% LiPb (90% Li-6), 13.5% He/void, 6% FS, 3.5% SiC
-"""
-def mix_FNSFDCLL(material_library):
-    mix=MultiMaterial({material_library['MF82H']:0.06, material_library['Pb157Li90']:0.77, material_library['HeT410P80']: 0.135, material_library['SiC']: 0.035})
-    FNSFDCLL_mat=mix.mix_by_volume()
-    FNSFDCLL_mat.metadata['mat_number']=220
-    FNSFDCLL_mat.metadata['mixturecitation']='EliasUWFMD1424_2015 and MadaniUWFDM1423_2015'
-    constituentCitationList=[str(material_library['MF82H'].metadata['citation']), str(material_library['Pb157Li90'].metadata['citation']), str(material_library['HeT410P80'].metadata['citation']), str(material_library['SiC'].metadata['citation'])]
-    constituentCitation=" ".join(constituentCitationList)
-    FNSFDCLL_mat.metadata['constituentcitation']=constituentCitation
-    print('FNSFDCLL_mat  ', FNSFDCLL_mat.metadata['mat_number'], FNSFDCLL_mat.density)
-    print("   Constituent Citations: ", constituentCitation)
-    FNSFDCLL_mat=FNSFDCLL_mat.expand_elements()
-    return FNSFDCLL_mat
+    Arguments:
+        material_library (MaterialLibrary): Library containing constituent materials.
+        vol_fracs (Dict[str, float]): Dictionary where the keys are names of materials and values are the volume fraction.
+        citation (str): Citation for the mixture.
+    """
+    mix_dict = {
+        material_library[name]: vol_frac for name, vol_frac in vol_fracs.items()
+    }
+    mix = MultiMaterial(mix_dict)
+    mat = mix.mix_by_volume()
+    mat.metadata["mixture_citation"] = citation
+    mat.metadata["constituent_citation"] = get_constituent_citations(mix_dict.keys())
+    return mat
 
-# EUDEMO
-# fullreference: EadeFusEngDes_2017 T. Eade et al., Fusion Engineering and Design 124 (2017) page 1241-1245 http://dx.doi.org/10.1016/j.fusengdes.2017.02.100
-# fullreference: GilbertNucFus_2017 M. Gilbert et al., Nucl. Fusion 57 (2017) 046015 https://doi.org/10.1088/1741-4326/aa5bd7
-#
-# fullreference: ZhouEnergies_2023 G. Zhou et al., Energies 2023, 16, 5377 https://doi.org/10.3390/en16145377
-#note: latest design uses mixed pebbles Li4SiO4+35 mole% Li2TiO3 and Be12Ti blocks
 
-"""
-EUDEMOHCPB 11.8% Eurofer,37.9% Be,13% Li4SiO4 (60% Li-6),8.7% He80bar,28.6% He1bar
-"""
-def mix_EUDEMOHCPB(material_library):
-    mix=MultiMaterial({material_library['EUROFER97']:0.118, material_library['Be']:0.379, material_library['Li4SiO4Li60']:0.13, material_library['HeT410P80']: 0.087, material_library['HeT410P1']: 0.286})
-    EUDEMOHCPB_mat=mix.mix_by_volume()
-    EUDEMOHCPB_mat.metadata['mat_number']=221
-    EUDEMOHCPB_mat.metadata['mixturecitation']='EadeFusEngDes_2017'
-    constituentCitationList=[str(material_library['EUROFER97'].metadata['citation']), str(material_library['Be'].metadata['citation']), str(material_library['Li4SiO4Li60'].metadata['citation']), str(material_library['HeT410P80'].metadata['citation']), str(material_library['HeT410P1'].metadata['citation'])]
-    constituentCitation=" ".join(constituentCitationList)
-    EUDEMOHCPB_mat.metadata['constituentcitation']=constituentCitation
-    print('EUDEMOHCPB_mat  ', EUDEMOHCPB_mat.metadata['mat_number'], EUDEMOHCPB_mat.density)
-    print("   Constituent Citations: ", constituentCitation)
-    EUDEMOHCPB_mat=EUDEMOHCPB_mat.expand_elements()
-    return EUDEMOHCPB_mat
+mat_data: Dict[str, Dict[str, Any]] = {
+    "FNSFFW": {
+        "vol_fracs": {"MF82H": 0.34, "HeT410P80": 0.66},
+        "mixture_citation": "DavisFusEngDes_2018",
+    },
+    "FNSFFWstruct": {
+        "vol_fracs": {"MF82H": 1.0},
+        "mixture_citation": "DavisFusEngDes_2018",
+    },
+    "reIron": {
+        "vol_fracs": {"Fe": 1.0},
+        "mixture_citation": "pnnl-15870rev1",
+    },
+    "FNSFDCLL": {
+        "vol_fracs": {
+            "MF82H": 0.06,
+            "Pb157Li90": 0.77,
+            "HeT410P80": 0.135,
+            "SiC": 0.035,
+        },
+        "mixture_citation": "EliasUWFMD1424_2015 and MadaniUWFDM1423_2015",
+    },
+    "EUDEMOHCPB": {
+        "vol_fracs": {
+            "EUROFER97": 0.118,
+            "Be": 0.379,
+            "Li4SiO4Li60.0": 0.13,
+            "HeT410P80": 0.087,
+            "HeT410P1": 0.286,
+        },
+        "mixture_citation": "EadeFusEngDes_2017",
+    },
+    "EUDEMOHCPBacb": {
+        "vol_fracs": {
+            "EUROFER97": 0.118,
+            "Be12Ti": 0.379,
+            "Li4SiO4Li60.0": 0.0845,
+            "Li2TiO3Li60.0": 0.0455,
+            "HeT410P80": 0.087,
+            "HeT410P1": 0.286,
+        },
+        "mixture_citation": "ZhouEnergies_2023 and ???",
+    },
+    "Pbli90BZ": {
+        "vol_fracs": {"Pb157Li90": 1.00},
+        "mixture_citation": "ARIES and MELCOR TMAP",
+    },
+    "FlibeLi60BZ": {
+        "vol_fracs": {"FlibeLi60.0": 1.0},
+        "mixture_citation": "SohalINLEXT-10-18297_2013 and density ???",
+    },
+    "FNSFIBSR": {
+        "vol_fracs": {"MF82H": 0.28, "WC": 0.52, "HeT410P80": 0.20},
+        "mixture_citation": "ElGuebalyFusSciTec_2017 and Others",
+    },
+    "FNSFIBSRstruct": {
+        "vol_fracs": {"MF82H": 1.0},
+        "mixture_citation": "SchnabelNDS2024",
+    },
+    "FNSFIBSRfill": {
+        "vol_fracs": {"MF82H": 0.05, "WC": 0.686, "HeT410P80": 0.264},
+        "mixture_citation": "SchnabelNDS2024",
+    },
+    "FNSFCC": {
+        "vol_fracs": {"SS316LNIG": 1.0},
+        "mixture_citation": "DavisFusEngDes_2018",
+    },
+    "FNSFIBWP": {
+        "vol_fracs": {
+            "JK2LBSteel": 0.29,
+            "Cu": 0.43,
+            "TernaryNb3Sn": 0.06,
+            "Eins": 0.08,
+            "LHe": 0.14,
+        },
+        "mixture_citation": "SchnabelNDS2024",
+    },
+    "IFMIFDONESspecimenstack": {
+        "vol_fracs": {"EUROFER97": 0.75, "Na": 0.25},
+        "mixture_citation": "QiuNucMatEnergy_2018",
+    },
+    "Pb": {
+        "vol_fracs": {"Pb": 1.0},
+        "mixture_citation": "pnnl-15870rev1",
+    },
+    "SS316LN": {
+        "vol_fracs": {"SS316LN": 1.0},
+        "mixture_citation": "GilbertHandbookITERCCFE_2016",
+    },
+    "Concrete": {
+        "vol_fracs": {"Concrete": 1.0},
+        "mixture_citation": "pnnl-15870rev1",
+    },
+}
 
-"""
-EUDEMOHCPBacb 11.8% Eurofer,37.9% Be,8.45% Li4SiO4 (60% Li-6),4.55% Li2TiO3 (60% Li-6),8.7% He80bar,28.6% He1bar
-"""
-def mix_EUDEMOHCPBacb(material_library):
-    mix=MultiMaterial({material_library['EUROFER97']:0.118, material_library['Be12Ti']:0.379, material_library['Li4SiO4Li60']:0.0845, material_library['Li2TiO3Li60']:0.0455, material_library['HeT410P80']: 0.087, material_library['HeT410P1']: 0.286})
-    EUDEMOHCPBacb_mat=mix.mix_by_volume()
-    EUDEMOHCPBacb_mat.metadata['mat_number']=222
-    EUDEMOHCPBacb_mat.metadata['mixturecitation']='ZhouEnergies_2023 and ???'
-    constituentCitationList=[str(material_library['EUROFER97'].metadata['citation']), str(material_library['Be12Ti'].metadata['citation']), str(material_library['Li4SiO4Li60'].metadata['citation']), str(material_library['Li2TiO3Li60'].metadata['citation']), str(material_library['HeT410P80'].metadata['citation']), str(material_library['HeT410P1'].metadata['citation'])]
-    constituentCitation=" ".join(constituentCitationList)
-    EUDEMOHCPBacb_mat.metadata['constituentcitation']=constituentCitation
-    print('EUDEMOHCPBacb_mat  ', EUDEMOHCPBacb_mat.metadata['mat_number'], EUDEMOHCPBacb_mat.density)
-    print("   Constituent Citations: ", constituentCitation)
-    EUDEMOHCPBacb_mat=EUDEMOHCPBacb_mat.expand_elements()
-    return EUDEMOHCPBacb_mat
 
-# generic breeder materials
-
-"""
-PbLi90BZ 100% LiPb (90% Li-6)
-"""
-def mix_PbLi90BZ(material_library):
-    mix=MultiMaterial({material_library['Pb157Li90']:1.00})
-    PbLi90BZ_mat=mix.mix_by_volume()
-    PbLi90BZ_mat.metadata['mat_number']=223
-    PbLi90BZ_mat.metadata['mixturecitation']='ARIES and MELCOR TMAP'
-    print('PbLi90BZ_mat  ', PbLi90BZ_mat.metadata['mat_number'], PbLi90BZ_mat.density)
-    PbLi90BZ_mat=PbLi90BZ_mat.expand_elements()
-    return PbLi90BZ_mat
-
-"""
-FlibeLi60BZ 100% Flibe (60% Li-6)
-"""
-# fullreference: SohalINLEXT-10-18297_2013 M. Sohal et al., "Engineering Database of Liquid Salt Thermophysical and Thermochemical Properties", INL/EXT-10-18297, June 2013. https://inldigitallibrary.inl.gov/sites/STI/STI/5698704.pdf
-def mix_FlibeLi60BZ(material_library):
-    mix=MultiMaterial({material_library['FlibeLi60']:1.00})
-    FlibeLi60BZ_mat=mix.mix_by_volume()
-    FlibeLi60BZ_mat.metadata['mat_number']=224
-    FlibeLi60BZ_mat.metadata['mixturecitation']='SohalINLEXT-10-18297_2013 and density ???'
-    print('FlibeLi60BZ_mat  ', FlibeLi60BZ_mat.metadata['mat_number'], FlibeLi60BZ_mat.density)
-    FlibeLi60BZ_mat=FlibeLi60BZ_mat.expand_elements()
-    return FlibeLi60BZ_mat
-
-# shielding 
-
-"""
-FNSFIBSR (28% MF82H, 20% He, 52% WC filler) 
-"""
-# fullreference: ElGuebalyFusSciTec_2017 https://doi.org/10.1080/15361055.2017.1333865
-def mix_FNSFIBSR(material_library):
-    mix=MultiMaterial({material_library['MF82H']:0.28, material_library['WC']:0.52, material_library['HeT410P80']: 0.20})
-    FNSFIBSR_mat=mix.mix_by_volume()
-    FNSFIBSR_mat.metadata['mat_number']=2
-    FNSFIBSR_mat.metadata['mixturecitation']='ElGuebalyFusSciTec_2017 and Others'
-    print('FNSFIBSR_mat  ', FNSFIBSR_mat.metadata['mat_number'], FNSFIBSR_mat.density)
-    FNSFIBSR_mat=FNSFIBSR_mat.expand_elements()
-    return FNSFIBSR_mat
-
-"""
-FNSFIBSRstruct    (100% FS MF82H)
-"""
-# fullreference: SchnabelNDS_2024 G. Schnabel et al., "FENDL: A Library for Fusion Research and Applications, Nuclear Data Sheets, vol. 193, pages 1-78, 2024. https://doi.org/10.1016/j.nds.2024.01.001
-def mix_FNSFIBSRstruct(material_library):
-    mix=MultiMaterial({material_library['MF82H']:1.00})
-    FNSFIBSRstruct_mat=mix.mix_by_volume()
-    FNSFIBSRstruct_mat.metadata['mat_number']=400
-    FNSFIBSRstruct_mat.metadata['mixturecitation']='SchnabelNDS2024'
-    print('FNSFIBSRstruct_mat  ', FNSFIBSRstruct_mat.metadata['mat_number'], FNSFIBSRstruct_mat.density)
-    FNSFIBSRstruct_mat=FNSFIBSRstruct_mat.expand_elements()
-    return FNSFIBSRstruct_mat
-
-"""
-FNSFIBSRfill
-"""
-def mix_FNSFIBSRfill(material_library):
-    mix=MultiMaterial({material_library['MF82H']:0.05, material_library['WC']:0.686, material_library['HeT410P80']: 0.264})
-    FNSFIBSRfill_mat=mix.mix_by_volume()
-    FNSFIBSRfill_mat.metadata['mat_number']=401
-    FNSFIBSRfill_mat.metadata['mixturecitation']='SchnabelNDS2024'
-    print('FNSFIBSRfill_mat  ', FNSFIBSRfill_mat.metadata['mat_number'], FNSFIBSRfill_mat.density)
-    FNSFIBSRfill_mat=FNSFIBSRfill_mat.expand_elements()
-    return FNSFIBSRfill_mat
-
-"""
-FNSFCC    (100% SS316LN closest to SS316LNIG)
-"""
-def mix_FNSFCC(material_library):
-    mix=MultiMaterial({material_library['SS316LNIG']:1.00})
-    FNSFCC_mat=mix.mix_by_volume()
-    FNSFCC_mat.metadata['mat_number']=17
-    FNSFCC_mat.metadata['mixturecitation']='DavisFusEngDes_2018'
-    print('FNSFCC_mat  ', FNSFCC_mat.metadata['mat_number'], FNSFCC_mat.density)
-    FNSFCC_mat=FNSFCC_mat.expand_elements()
-    return FNSFCC_mat
-    
-"""
-FNSFIBWP (29% JK2LB Steel, 43% Cu, 6% Ternary Nb3Sn, 8% Hybrid Electric Insulator, 14% Liquid He)
-"""
-def mix_FNSFIBWP(material_library):
-    mix=MultiMaterial({material_library['JK2LBSteel']:0.29, material_library['Cu']:0.43, material_library['TernaryNb3Sn']:0.06, material_library['Eins']:0.08, material_library['LHe']:0.14})
-    FNSFIBWP_mat=mix.mix_by_volume()
-    FNSFIBWP_mat.metadata['mat_number']=19
-    FNSFIBWP_mat.metadata['mixturecitation']='SchnabelNDS2024'
-    print('FNSFIBWP_mat  ', FNSFIBWP_mat.metadata['mat_number'], FNSFIBWP_mat.density)
-    FNSFIBWP_mat=FNSFIBWP_mat.expand_elements()
-    return FNSFIBWP_mat
-
-"""
-IFMIFDONESspecimenstack    (75% EUROFER97, 25% Na)
-"""
-# fullreference: QiuNucMatEnergy_2018 https://doi.org/10.1016/j.nme.2018.04.009
-def mix_IFMIFDONESspecimenstack(material_library):
-    mix=MultiMaterial({material_library['EUROFER97']:0.75,material_library['Na']:0.25})
-    IFMIFDONESspecimenstack_mat=mix.mix_by_volume()
-    IFMIFDONESspecimenstack_mat.metadata['mat_number']=29
-    IFMIFDONESspecimenstack_mat.metadata['mixturecitation']='QiuNucMatEnergy_2018'
-    constituentCitationList=[str(material_library['EUROFER97'].metadata['citation']),str(material_library['Na'].metadata['citation'])]
-    constituentCitation=" ".join(constituentCitationList)
-    IFMIFDONESspecimenstack_mat.metadata['constituentcitation']=constituentCitation
-    print('IFMIFDONESspecimenstack_mat  ', IFMIFDONESspecimenstack_mat.metadata['mat_number'], IFMIFDONESspecimenstack_mat.density)
-    print ('   Constituent Citations: ', constituentCitation)
-    IFMIFDONESspecimenstack_mat=IFMIFDONESspecimenstack_mat.expand_elements()
-    return IFMIFDONESspecimenstack_mat
-
-def mix_Pb(material_library):
-    mix=MultiMaterial({material_library['Pb']:1.00})
-    Pb_mat=mix.mix_by_volume()
-    Pb_mat.metadata['mat_number']=30
-    Pb_mat.metadata['mixturecitation']=str(material_library['Pb'].metadata['citation'])
-    print('Pb_mat  ', Pb_mat.metadata['mat_number'], Pb_mat.density) 
-    Pb_mat=Pb_mat.expand_elements()
-    return Pb_mat
-
-def mix_SS316LN(material_library):
-    mix=MultiMaterial({material_library['SS316LN']:1.00})
-    SS316LN_mat=mix.mix_by_volume()
-    SS316LN_mat.metadata['mat_number']=32
-    SS316LN_mat.metadata['mixturecitation']=str(material_library['SS316LN'].metadata['citation'])
-    print('SS316LN_mat  ', SS316LN_mat.metadata['mat_number'], SS316LN_mat.density) 
-    SS316LN_mat=SS316LN_mat.expand_elements()
-    return SS316LN_mat
-
-def mix_Concrete(material_library):
-    mix=MultiMaterial({material_library['Concrete']:1.00})
-    Concrete_mat=mix.mix_by_volume()
-    Concrete_mat.metadata['mat_number']=31
-    Concrete_mat.metadata['mixturecitation']=str(material_library['Concrete'].metadata['citation'])
-    print('Concrete_mat  ', Concrete_mat.metadata['mat_number'], Concrete_mat.density) 
-    Concrete_mat=Concrete_mat.expand_elements()
-    return Concrete_mat
-
-########################################################################    
 def main():
-    #
-    # remove old mixmat_lib
-    try: 
-        os.remove("mixedPureFusionMaterials_libv1.h5")
-    except: 
-        pass  
-    # create material library object
-    mixmat_lib = MaterialLibrary()
-           
     # Load material library
-    mat_lib=load_matlib()
+    mat_lib = MaterialLibrary()
+    mat_lib.from_json("PureFusionMaterials_libv1.json")
 
-    # mix FNSFFW
-    FNSFFW_mat = mix_FNSFFW(mat_lib)
-    mixmat_lib['FNSFFW']= FNSFFW_mat
+    # Create material library object
+    mixmat_lib = MaterialLibrary()
+    for mat_name, mat_input in mat_data.items():
+        mixmat_lib[mat_name] = mix_by_volume(
+            mat_lib, mat_input["vol_fracs"], mat_input["mixture_citation"]
+        )
 
-    FNSFFWstruct_mat = mix_FNSFFWstruct(mat_lib)
-    mixmat_lib['FNSFFWstruct']= FNSFFWstruct_mat
+    # Remove existing files only if the respective output has a value
+    if OUTPUT_HDF5:
+        try:
+            os.remove(OUTPUT_HDF5)
+            logging.info(f"Removed existing file: {OUTPUT_HDF5}")
+        except FileNotFoundError:
+            logging.warning(f"File not found, skipping removal: {OUTPUT_HDF5}")
 
-    # mix reIron
-    reIron_mat = mix_reIron(mat_lib)
-    mixmat_lib['reIron']= reIron_mat
+    if OUTPUT_XML:
+        try:
+            os.remove(OUTPUT_XML)
+            logging.info(f"Removed existing file: {OUTPUT_XML}")
+        except FileNotFoundError:
+            logging.warning(f"File not found, skipping removal: {OUTPUT_XML}")
 
-    # blanket materials
-    FNSFDCLL_mat = mix_FNSFDCLL(mat_lib)
-    mixmat_lib['FNSFDCLL']= FNSFDCLL_mat
+    if OUTPUT_JSON:
+        try:
+            os.remove(OUTPUT_JSON)
+            logging.info(f"Removed existing file: {OUTPUT_JSON}")
+        except FileNotFoundError:
+            logging.warning(f"File not found, skipping removal: {OUTPUT_JSON}")
 
-    EUDEMOHCPB_mat = mix_EUDEMOHCPB(mat_lib)
-    mixmat_lib['EUDEMOHCPB']= EUDEMOHCPB_mat
+    # Write material library only if it has data
+    if mixmat_lib:
+        if OUTPUT_HDF5:
+            try:
+                mixmat_lib.write_hdf5(OUTPUT_HDF5)
+                logging.info(f"Material library successfully written to {OUTPUT_HDF5}.")
+            except Exception as e:
+                logging.error(f"Failed to write material library to {OUTPUT_HDF5}: {e}")
 
-    EUDEMOHCPBacb_mat = mix_EUDEMOHCPBacb(mat_lib)
-    mixmat_lib['EUDEMOHCPBacb']= EUDEMOHCPBacb_mat    
-    
-    PbLi90BZ_mat = mix_PbLi90BZ(mat_lib)
-    mixmat_lib['PbLi90BZ']= PbLi90BZ_mat
-    FlibeLi60BZ_mat = mix_FlibeLi60BZ(mat_lib)
-    mixmat_lib['FlibeLi60BZ']= FlibeLi60BZ_mat
-    
-    # homogenized shields
-    FNSFIBSR_mat = mix_FNSFIBSR(mat_lib)
-    mixmat_lib['FNSFIBSR']= FNSFIBSR_mat
+        if OUTPUT_XML:
+            try:
+                mixmat_lib.write_openmc(OUTPUT_XML)
+                logging.info(f"Material library successfully written to {OUTPUT_XML}.")
+            except Exception as e:
+                logging.error(f"Failed to write material library to {OUTPUT_XML}: {e}")
 
-    # shield fillers
-    FNSFIBSRfill_mat = mix_FNSFIBSRfill(mat_lib)
-    mixmat_lib['FNSFIBSRfill']= FNSFIBSRfill_mat
+        if OUTPUT_JSON:
+            try:
+                mixmat_lib.write_json(OUTPUT_JSON)
+                logging.info(f"Material library successfully written to {OUTPUT_JSON}.")
+            except Exception as e:
+                logging.error(f"Failed to write material library to {OUTPUT_JSON}: {e}")
 
-    # shield structure or shell
-    FNSFIBSRstruct_mat = mix_FNSFIBSRstruct(mat_lib)
-    mixmat_lib['FNSFIBSRstruct']= FNSFIBSRstruct_mat
+    logging.info("All done!")
 
-    # magnets
-    FNSFCC_mat = mix_FNSFCC(mat_lib)
-    mixmat_lib['FNSFCC']= FNSFCC_mat
-    FNSFIBWP_mat = mix_FNSFIBWP(mat_lib)
-    mixmat_lib['FNSFIBWP']= FNSFIBWP_mat
-
-    # other 
-    IFMIFDONESspecimenstack_mat = mix_IFMIFDONESspecimenstack(mat_lib)
-    mixmat_lib['IFMIFDONESspecimenstack']= IFMIFDONESspecimenstack_mat
-    
-    Pb_mat = mix_Pb(mat_lib)
-    mixmat_lib['Pb']= Pb_mat
-
-    Concrete_mat = mix_Concrete(mat_lib)
-    mixmat_lib['Concrete']= Concrete_mat
-
-    SS316LN_mat = mix_SS316LN(mat_lib)
-    mixmat_lib['SS316LN']= SS316LN_mat
-    
-    # write fnsf material library
-    mixmat_lib.write_hdf5("mixedPureFusionMaterials_libv1.h5") # don't set datapath,nucpath...will be pyne default values
-    # change datapath to be able to read with older version of uwuw_preproc
-    #mixmat_lib.write_hdf5("mixedPureFusionMaterials_libv1_old.h5",datapath='/materials', nucpath='/nucid')
 
 if __name__ == "__main__":
     main()
