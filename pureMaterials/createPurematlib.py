@@ -101,7 +101,7 @@ mat_data['SS316LNIG'] = {
 # added 10 wppm B which is important to assess typical He production level
 mat_data['SS316L'] = {
     'nucvec' : {50000000:0.001, 60000000:0.03, 140000000:1.0, 150000000:0.045, 160000000:0.03, 240000000:17, 250000000:2, 260000000:65.394, 280000000:12, 420000000:2.5},
-    density : 8.00,
+    'density' : 8.00,
     'citation' : 'pnnl-15870rev1'
     }
 
@@ -469,11 +469,13 @@ def main():
     # remove lib
     try: 
         os.remove("PureFusionMaterials_libv1.h5")
+        os.remove("PureFusionMaterials_libv1.json")
     except: 
         pass  
         
     # write fnsf1d material library
     mat_lib.write_hdf5("PureFusionMaterials_libv1.h5") # don't set datapath,nucpath...will be pyne default values
+    mat_lib.write_json("PureFusionMaterials_libv1.json")
     # change datapath to be able to read with older version of uwuw_preproc
     #mat_lib.write_hdf5("PureFusionMaterials_libv1_old.h5",datapath='/materials', nucpath='/nucid')
 
