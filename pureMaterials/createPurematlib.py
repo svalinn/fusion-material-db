@@ -475,8 +475,6 @@ def main():
         
     # write fnsf1d material library
     mat_lib.write_json("PureFusionMaterials_libv1.json")
-    # change datapath to be able to read with older version of uwuw_preproc
-    #mat_lib.write_hdf5("PureFusionMaterials_libv1_old.h5",datapath='/materials', nucpath='/nucid')
 
     print("All done!")
     
