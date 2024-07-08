@@ -468,7 +468,6 @@ def main():
     
     # remove lib
     try: 
-        os.remove("PureFusionMaterials_libv1.h5")
         os.remove("PureFusionMaterials_libv1.json")
     except: 
         pass  
