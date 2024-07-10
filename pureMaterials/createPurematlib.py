@@ -1,35 +1,6 @@
-#! /usr/bin/python
-#
-# -updated for python3 (print) and updated for changes in python modules
-#
-# pure fusion materials based on FESS-FNSF, ARIES, EU-DEMO
-# -can be used for mixing homogenized regions
-# -generally impurities at <~1e-3 wt. percent (10 wppm) are removed from materials
-#   (except SS-316 steels may contain boron impurity)
-#
-#
 import os
-from pyne import material
-from pyne.material import Material, MultiMaterial
-from pyne.material_library import MaterialLibrary
 
-#
-#
-
-
-def make_mat(nucvec, density, citation, molecular_mass=None):
-    mat = Material(nucvec, density=density, metadata={"citation": citation})
-    if molecular_mass:
-        mat.molecular_mass = molecular_mass
-    return mat.expand_elements()
-
-
-def make_mat_from_atom(atom_frac, density, citation):
-    mat = Material()
-    mat.from_atom_frac(atom_frac)
-    mat.density = density
-    mat.metadata["citation"] = citation
-    return mat.expand_elements()
+import material_db_tools as mdbt
 
 
 mat_data = {}
