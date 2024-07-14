@@ -74,7 +74,6 @@ def make_mat_from_atom(
             enriched_mat = Material(
                 {key: value for key, value in enrichment_vector.items()}
             )
-            print(enriched_mat, "testing")
             atom_frac = enrich(atom_frac, isotope, enriched_mat.to_atom_frac())
 
     mat = Material()
