@@ -13,7 +13,7 @@ import os
 from pyne import material
 from pyne.material import Material, MultiMaterial
 from pyne.material_library import MaterialLibrary
-from working_multi_createPurematlib import (
+from createPurematlib import (
     make_mat,
     make_mat_from_atom,
     update_nucvec,
