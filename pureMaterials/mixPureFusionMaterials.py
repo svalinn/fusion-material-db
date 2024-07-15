@@ -7,46 +7,82 @@
 # designs
 # -can be used for mixing homogenized regions
 #
-#
-#
+
+# Doesn't work currently to enrich elements that are currently enriched
+# If this version moves forward I plan to add logic to warn the user when mat input already contains the isotopes to be enriched
+
 import os
 from pyne import material
 from pyne.material import Material, MultiMaterial
 from pyne.material_library import MaterialLibrary
+from working_multi_createPurematlib import (
+    make_mat,
+    make_mat_from_atom,
+    update_nucvec,
+    update_atom_frac,
+)
+from createPurematlib_og import mat_data as pure
+from pyne import nucname
 
 
 def get_consituent_citations(materials):
-    citation_str = ""
+    citation_list = []
     for mat in materials:
-        citation_str = " ".join([citation_str, mat.metadata["citation"]])
-    return citation_str
+        citation_list.append(mat.metadata["citation"])
+
+    return ", ".join(citation_list)
 
 
 # Mix Materials by Volume
-def mix_by_volume(material_library, vol_fracs, citation):
-    """
-    Mixes materials by volume, adds list of constituent citations to the
-    metadata
+def mix_by_volume(material_library, vol_fracs, citation, mass_enrichment=None):
 
-    Arguments:
-        material_library (PyNE material library): library containing constituent
-            materials.
-        vol_fracs (dict): dictionary where the keys are names of materials (str)
-            and values are the volume fraction (float)
-        citation (str): citation for the mixture
-    """
     mix_dict = {}
 
     for name, volume_fraction in vol_fracs.items():
-        mix_dict[material_library[name]] = volume_fraction
+        material = material_library[name]
 
+        if mass_enrichment and name in mass_enrichment:
+            # Will update later so things are less explicit, seems easier to read like this
+
+            material = material.collapse_elements({1})
+
+            nucvec = dict(material.to_atom_frac())
+
+            mat_input = pure[name]
+            if "atom_frac" in mat_input:
+
+                atom_frac = mat_input["atom_frac"]
+                mat_atom_input = dict(atom_frac)
+                # Which of the two methods is better?
+                enriched_material = make_mat_from_atom(
+                    atom_frac=mat_atom_input,
+                    density=mat_input["density"],
+                    citation=mat_input["citation"],
+                    mass_enrichment=mass_enrichment[name],
+                )
+
+            else:
+                nucvec = mat_input["nucvec"]
+                mat_mass_input = dict(nucvec)
+                enriched_material_params = {
+                    "nucvec": mat_mass_input,
+                    "density": mat_input["density"],
+                    "citation": mat_input["citation"],
+                    "mass_enrichment": mass_enrichment[name],
+                }
+
+                enriched_material = make_mat(**enriched_material_params)
+
+            mix_dict[enriched_material.expand_elements()] = volume_fraction
+        else:
+            mix_dict[material.expand_elements()] = volume_fraction
     mix = MultiMaterial(mix_dict)
     mat = mix.mix_by_volume()
     mat.metadata["mixture_citation"] = citation
     mat.metadata["constituent_citation"] = get_consituent_citations(
         list(mix_dict.keys())
     )
-    return mat
+    return mat.expand_elements()
 
 
 mat_data = {}
@@ -207,7 +243,6 @@ mat_data["Concrete"] = {
 
 ########################################################################
 def main():
-    #
     # remove old mixmat_lib
     try:
         os.remove("mixedPureFusionMaterials_libv1.json")
@@ -222,11 +257,14 @@ def main():
     mixmat_lib = MaterialLibrary()
     for mat_name, mat_input in mat_data.items():
         mixmat_lib[mat_name] = mix_by_volume(
-            mat_lib, mat_input["vol_fracs"], mat_input["mixture_citation"]
+            mat_lib,
+            mat_input["vol_fracs"],
+            mat_input["mixture_citation"],
+            mat_input.get("mass_enrichment"),
         )
 
     # write fnsf material library
-    mixmat_lib.write_json("mixedPureFusionMats_libv1.json")
+    mixmat_lib.write_json("mixedPureFusionMaterials_libv1.json")
 
 
 if __name__ == "__main__":
