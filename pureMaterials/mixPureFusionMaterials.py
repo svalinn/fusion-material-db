@@ -13,32 +13,56 @@ import os
 from pyne import material
 from pyne.material import Material, MultiMaterial
 from pyne.material_library import MaterialLibrary
+from working_multi_createPurematlib import (
+    make_mat,
+    make_mat_from_atom,
+    update_nucvec,
+    update_atom_frac,
+)
+from pyne import nucname
 
 
 def get_consituent_citations(materials):
-    citation_str = ""
+    citation_list = []
     for mat in materials:
-        citation_str = " ".join([citation_str, mat.metadata["citation"]])
-    return citation_str
+        citation_list.append(mat.metadata["citation"])
+
+    return ", ".join(citation_list)
 
 
 # Mix Materials by Volume
-def mix_by_volume(material_library, vol_fracs, citation):
-    """
-    Mixes materials by volume, adds list of constituent citations to the
-    metadata
-
-    Arguments:
-        material_library (PyNE material library): library containing constituent
-            materials.
-        vol_fracs (dict): dictionary where the keys are names of materials (str)
-            and values are the volume fraction (float)
-        citation (str): citation for the mixture
-    """
+def mix_by_volume(material_library, vol_fracs, citation, mass_enrichment=None):
     mix_dict = {}
 
     for name, volume_fraction in vol_fracs.items():
-        mix_dict[material_library[name]] = volume_fraction
+        material = material_library[name]
+
+        if mass_enrichment and name in mass_enrichment:
+            material = material.collapse_elements({69})  # Collapse material elements
+            nucvec = dict(material.to_atom_frac())  # Default to atom fraction
+
+            # Check if enrichment type is specified and apply accordingly
+            enrichment_info = mass_enrichment[name]
+            if enrichment_info["type"] == "mass":
+                nucvec = dict(material)
+                # Apply enrichment
+                enriched_material = make_mat(
+                    nucvec=nucvec,
+                    density=material.density,
+                    citation=material.metadata.get("citation", ""),
+                    mass_enrichment=enrichment_info["data"],  # Pass enrichment data
+                )
+            else:
+                enriched_material = make_mat_from_atom(
+                    atom_frac=nucvec,
+                    density=material.density,
+                    citation=material.metadata.get("citation", ""),
+                    mass_enrichment=enrichment_info["data"],  # Pass enrichment data
+                )
+            mix_dict[enriched_material.expand_elements()] = volume_fraction
+        else:
+            mix_dict[material.expand_elements()] = volume_fraction
+
 
     mix = MultiMaterial(mix_dict)
     mat = mix.mix_by_volume()
@@ -46,7 +70,8 @@ def mix_by_volume(material_library, vol_fracs, citation):
     mat.metadata["constituent_citation"] = get_consituent_citations(
         list(mix_dict.keys())
     )
-    return mat
+    print("meta")
+    return mat.expand_elements()
 
 
 mat_data = {}
@@ -222,7 +247,10 @@ def main():
     mixmat_lib = MaterialLibrary()
     for mat_name, mat_input in mat_data.items():
         mixmat_lib[mat_name] = mix_by_volume(
-            mat_lib, mat_input["vol_fracs"], mat_input["mixture_citation"]
+            mat_lib,
+            mat_input["vol_fracs"],
+            mat_input["mixture_citation"],
+            mat_input.get("mass_enrichment"),
         )
 
     # write fnsf material library
