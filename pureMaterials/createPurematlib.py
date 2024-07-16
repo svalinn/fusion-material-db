@@ -50,7 +50,7 @@ def make_mat(
     mass_enrichment: Optional[Dict[int, Dict[int, float]]] = None,
 ) -> Material:
     """Create a Material object from nuclear vector data."""
-    if mass_enrichment is not None:
+    if mass_enrichment:
         for isotope, enrichment_vector in mass_enrichment.items():
             enriched_mat = Material(
                 {key: value for key, value in enrichment_vector.items()}
