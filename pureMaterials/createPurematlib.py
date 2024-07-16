@@ -52,9 +52,7 @@ def make_mat(
     """Create a Material object from nuclear vector data."""
     if mass_enrichment:
         for element, enrichment_vector in mass_enrichment.items():
-            enriched_mat = Material(
-                {key: value for key, value in enrichment_vector.items()}
-            )
+            enriched_mat = Material(enrichment_vector)
             nucvec = enrich(nucvec, element, enriched_mat.comp)
     mat = Material(nucvec, density=density, metadata={"citation": citation})
     if molecular_mass:
