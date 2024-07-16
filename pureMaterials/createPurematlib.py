@@ -69,12 +69,10 @@ def make_mat_from_atom(
     mass_enrichment: Optional[Dict[int, Dict[int, float]]] = None,
 ) -> Material:
     """Create a Material object from atom fraction data."""
-    if mass_enrichment is not None:
-        for isotope, enrichment_vector in mass_enrichment.items():
-            enriched_mat = Material(
-                {key: value for key, value in enrichment_vector.items()}
-            )
-            atom_frac = enrich(atom_frac, isotope, enriched_mat.to_atom_frac())
+    if mass_enrichment:
+        for element, enrichment_vector in mass_enrichment.items():
+            enriched_mat = Material(enrichment_vector)
+            atom_frac = enrich(atom_frac, element, enriched_mat.to_atom_frac())
 
     mat = Material()
     mat.from_atom_frac(atom_frac)
