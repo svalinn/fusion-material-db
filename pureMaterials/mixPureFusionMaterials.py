@@ -18,11 +18,8 @@ from pyne.material_library import MaterialLibrary
 from createPurematlib import (
     make_mat,
     make_mat_from_atom,
-    update_nucvec,
-    update_atom_frac,
 )
 from createPurematlib_og import mat_data as pure
-from pyne import nucname
 
 
 def get_consituent_citations(materials):
@@ -45,10 +42,8 @@ def mix_by_volume(material_library, vol_fracs, citation, mass_enrichment=None):
             # Will update later so things are less explicit, seems easier to read like this
 
             material = material.collapse_elements({1})
-
-            nucvec = dict(material.to_atom_frac())
-
             mat_input = pure[name]
+
             if "atom_frac" in mat_input:
 
                 atom_frac = mat_input["atom_frac"]
