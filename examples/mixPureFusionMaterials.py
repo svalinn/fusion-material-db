@@ -2,6 +2,7 @@
 import os
 
 import material_db_tools as mdbt
+from pyne.material_library import MaterialLibrary
 
 mat_data = {}
 
@@ -160,7 +161,6 @@ mat_data["Concrete"] = {
 
 ########################################################################
 def main():
-    #
     # remove old mixmat_lib
     try:
         os.remove("mixedPureFusionMaterials_libv1.json")
@@ -169,7 +169,7 @@ def main():
 
     # Load material library
     mat_lib = MaterialLibrary()
-    mat_lib.from_json("PureFusionMaterials_libv1.json")
+    mat_lib.from_json("../db-outputs/PureFusionMaterials_libv1.json")
 
     # create material library object
     mixmat_lib = MaterialLibrary()
