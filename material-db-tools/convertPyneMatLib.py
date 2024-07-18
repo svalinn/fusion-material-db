@@ -30,7 +30,7 @@ parser.add_argument(
 parser.add_argument(
     "-c",
     "--writeOpenMC",
-    help="Write all materials in OpenMC matl format to 2 text files (atom and mass fraction)",
+    help="Write all materials in OpenMC matl format to atom fraction",
     action="store_true",
 )
 parser.add_argument(
@@ -142,17 +142,9 @@ if args.writeMCNP:
 # if requested, write all the materials in OpenMC matl card format to a text file
 if args.writeOpenMC:
     print(
-        "\n Writing all the materials in OpenMC material format to 2 text files (atom and mass frac format)... \n"
+        "\n Writing all the materials in OpenMC material format by atom fraction... \n"
     )
-    for matkey, matvalue in matllib.items():
-        print(
-            "   Writing ",
-            matkey.decode("utf8"),
-            "to a file (testplayallmat_openmcxxx.txt) using OpenMC format and atom/mass fractions... \n",
-        )
-        testmat = matllib[matkey]
-        testmat.write_openmc("testplayallmat_openmcAtomfrac.xml", "atom")
-        testmat.write_openmc("testplayallmat_openmcMassfrac.xml")
+    matllib.write_openmc('PureFusionMaterials_openmcAtomfrac.xml')
 #
 # if requested, write all the materials in Alara matl card format to a text file
 if args.writeAlara:
