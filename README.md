@@ -1,8 +1,17 @@
-# fusion-material-db
+# Standard Fusion Materials Database
 
 **Purpose:**
 
-_Collection of fusion material definitions with literature citations for neutronics codes_
+This repository provides a canonical set of materials used widely in fusion neutronics
+analysis. Defined using the PyNE toolkit, each pure material has an easy to read definition
+and an accompanying reference.
+
+Structure:
+* db-outputs: pure materials defined in different output formats
+* examples: a script that shows how to use `material-db-tools` to mix materials
+* material-db-tools: a set of python methods to facilitate the generation of PyNE material objects
+* pureMaterials: a script that defines the composition of a set of pure materials with references 
+   and uses `material-db-tools`
 
 ## Pure Fusion Materials:
   * For transport calculations
