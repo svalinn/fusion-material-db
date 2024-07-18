@@ -160,7 +160,6 @@ mat_data["Concrete"] = {
 
 ########################################################################
 def main():
-    #
     # remove old mixmat_lib
     try:
         os.remove("mixedPureFusionMaterials_libv1.json")
@@ -168,11 +167,11 @@ def main():
         pass
 
     # Load material library
-    mat_lib = MaterialLibrary()
-    mat_lib.from_json("PureFusionMaterials_libv1.json")
+    mat_lib = mdbt.MaterialLibrary()
+    mat_lib.from_json("../db-outputs/PureFusionMaterials_libv1.json")
 
     # create material library object
-    mixmat_lib = MaterialLibrary()
+    mixmat_lib = mdbt.MaterialLibrary()
     for mat_name, mat_input in mat_data.items():
         mixmat_lib[mat_name] = mdbt.mix_by_volume(
             mat_lib, mat_input["vol_fracs"], mat_input["mixture_citation"]

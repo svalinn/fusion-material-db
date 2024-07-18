@@ -1,7 +1,8 @@
 import os
 
 import material_db_tools as mdbt
-
+from pyne.material import Material
+from pyne.material_library import MaterialLibrary
 
 mat_data = {}
 
@@ -585,14 +586,14 @@ def main():
     # get material definition
     for mat_name, mat_input in mat_data.items():
         if "nucvec" in mat_input:
-            mat_lib[mat_name] = make_mat(
+            mat_lib[mat_name] = mdbt.make_mat(
                 mat_input["nucvec"],
                 mat_input["density"],
                 mat_input["citation"],
                 mat_input.get("molecular_mass"),
             )
         if "atom_frac" in mat_input:
-            mat_lib[mat_name] = make_mat_from_atom(
+            mat_lib[mat_name] = mdbt.make_mat_from_atom(
                 mat_input["atom_frac"],
                 mat_input["density"],
                 mat_input["citation"],
