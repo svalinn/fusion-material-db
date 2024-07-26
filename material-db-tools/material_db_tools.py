@@ -24,7 +24,7 @@ def get_consituent_citations(materials):
 
 
 # Mix Materials by Volume
-def mix_by_volume(material_library, vol_fracs, citation):
+def mix_by_volume(material_library, vol_fracs, citation, density_factor=1):
     """
     Mixes materials by volume, adds list of constituent citations to the
     metadata
@@ -35,7 +35,10 @@ def mix_by_volume(material_library, vol_fracs, citation):
         vol_fracs (dict): dictionary where the keys are names of materials (str)
             and values are the volume fraction (float)
         citation (str): citation for the mixture
+        density_factor (float): Value by which to scale the volume of the
+            mixed material. Defaults to 1.
     """
+
     mix_dict = {}
 
     for name, volume_fraction in vol_fracs.items():
@@ -43,6 +46,7 @@ def mix_by_volume(material_library, vol_fracs, citation):
 
     mix = MultiMaterial(mix_dict)
     mat = mix.mix_by_volume()
+    mat.density *= density_factor
     mat.metadata["mixture_citation"] = citation
     mat.metadata["constituent_citation"] = get_consituent_citations(
         list(mix_dict.keys())
