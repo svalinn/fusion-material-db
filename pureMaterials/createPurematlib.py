@@ -6,6 +6,8 @@ from pyne.material_library import MaterialLibrary
 
 mat_data = {}
 
+li_enriched_90 = Material({"Li6": 0.9, "Li7": 0.1})
+
 # fullreference: KluehJNM_2000 R.L. Klueh et al. jnm 2000 DOI:10.1016/S0022-3115(00)00060-X
 mat_data["MF82H"] = {
     "nucvec": {
@@ -172,7 +174,7 @@ mat_data["Eins"] = {
 # fullreference: BohmFusSciTec_2019 https://doi.org/10.1080/15361055.2019.1600930
 # fullreference: MartelliFusEngDes_2019 https://doi.org/10.1016/j.fusengdes.2018.11.028
 mat_data["Pb157Li90"] = {
-    "nucvec": {30060000: 0.4905, 30070000: 0.0545, 820000000: 99.455},
+    "atom_frac": {li_enriched_90: 0.157, "Pb": 0.843},
     "density": 9.32,  # not sure of Temperature
     "molecular_mass": 175.6273,
     "citation": "BohmFusSciTec_2019",
@@ -607,7 +609,6 @@ def main():
 
     # write fnsf1d material library
     mat_lib.write_json("PureFusionMaterials_libv1.json")
-
     print("All done!")
 
 
