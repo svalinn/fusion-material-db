@@ -176,7 +176,6 @@ mat_data["Eins"] = {
 mat_data["Pb157Li90"] = {
     "atom_frac": {li_enriched_90: 0.157, "Pb": 0.843},
     "density": 9.32,  # not sure of Temperature
-    "molecular_mass": 175.6273,
     "citation": "BohmFusSciTec_2019",
 }
 
