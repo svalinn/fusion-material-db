@@ -434,7 +434,7 @@ mat_data["Li4SiO4" + li6enrichStr] = {
 
 mat_data["Li2TiO3" + li6enrichStr] = {
     "atom_frac": {liXweightfraction: 2, 80000000: 3, 220000000: 1},
-    "density": 3.42,
+    "density": 3.43,
     "citation": "HernandezFusEngDes_2018",
 }
 
