@@ -63,20 +63,6 @@ mat_data["EUDEMOHCPB"] = {
     "mixture_citation": "EadeFusEngDes_2017",
 }
 
-# fullreference: ZhouEnergies_2023 G. Zhou et al., Energies 2023, 16,
-# 5377 https://doi.org/10.3390/en16145377
-# note: latest design uses mixed pebbles Li4SiO4+35 mole% Li2TiO3 and Be12Ti blocks
-mat_data["EUDEMOHCPBacb"] = {
-    "vol_fracs": {
-        "EUROFER97": 0.118,
-        "Be12Ti": 0.379,
-        "Li4SiO4Li60.0": 0.0845,
-        "Li2TiO3Li60.0": 0.0455,
-        "HeT410P80": 0.087,
-        "HeT410P1": 0.286,
-    },
-    "mixture_citation": "ZhouEnergies_2023 and ???",
-}
 
 # fullreference: BohmFusSciTec_2019
 # https://doi.org/10.1080/15361055.2019.1600930
