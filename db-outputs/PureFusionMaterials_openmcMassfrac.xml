@@ -227,7 +227,7 @@
     <nuclide name="Sn124" wo="6.0434e-02" />
   </material>
   <material id="39" name="Li2TiO3Li60" >
-    <density value="3.42" units="g/cc" />
+    <density value="3.43" units="g/cc" />
     <nuclide name="Li6" wo="7.0473e-02" />
     <nuclide name="Li7" wo="4.6982e-02" />
     <nuclide name="O16" wo="4.4068e-01" />
