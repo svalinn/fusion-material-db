@@ -28,3 +28,7 @@
     28 ElGuebalyFusSciTec_2017 https://doi.org/10.1080/15361055.2017.1333865
     29 SchnabelNDS_2024 G. Schnabel et al., "FENDL: A Library for Fusion Research and Applications, Nuclear Data Sheets, vol. 193, pages 1-78, 2024. https://doi.org/10.1016/j.nds.2024.01.001
     30 QiuNucMatEnergy_2018 https://doi.org/10.1016/j.nme.2018.04.009
+    31 AZOMaterialsHastelloyC276, AZO Materials, Super Alloy Hastelloy C276, https://www.azom.com/article.aspx?ArticleID=7804
+    32 AZOMaterialsAl1050, AZO Materials, https://www.azom.com/article.aspx?ArticleID=2798
+    33 Molodyk2021  https://doi.org/10.1038/s41598-021-81559-z 
+    34 Knizhnik2003 https://doi.org/10.1016/S0921-4534(03)01311-X
