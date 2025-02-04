@@ -12,6 +12,23 @@ mat_data["FNSFFW"] = {
     "mixture_citation": "DavisFusEngDes_2018",
 }
 
+mat_data["FNSFBW"] = {
+    "vol_fracs": {"MF82H": 0.80, "HeT410P80": 0.20},
+    "mixture_citation": "DavisFusEngDes_2018",
+}
+
+mat_data["FNSFHeMan"] = {
+    "vol_fracs": {"MF82H": 0.30, "HeT410P80": 0.70},
+    "mixture_citation": "DavisFusEngDes_2018",
+}
+
+
+mat_data["FNSFFWarmor"] = {
+    "vol_fracs": {"W": 0.913, "HeT410P1": 0.087}, # using He gas as void component
+    "mixture_citation": "DavisFusEngDes_2018",
+}
+
+
 # fullreference: KluehJNM_2000 R.L. Klueh et al. jnm 2000
 # DOI:10.1016/S0022-3115(00)00060-X
 mat_data["FNSFFWstruct"] = {
@@ -38,6 +55,16 @@ mat_data["FNSFDCLL"] = {
     "vol_fracs": {
         "MF82H": 0.06,
         "Pb157Li90": 0.77,
+        "HeT410P80": 0.135,
+        "SiC": 0.035,
+    },
+    "mixture_citation": "EliasUWFMD1424_2015 and MadaniUWFDM1423_2015",
+}
+
+mat_data["FNSFDCLLnat"] = {
+    "vol_fracs": {
+        "MF82H": 0.06,
+        "Pb157Linat": 0.77,
         "HeT410P80": 0.135,
         "SiC": 0.035,
     },
@@ -93,6 +120,10 @@ mat_data["FNSFIBSR"] = {
     "mixture_citation": "ElGuebalyFusSciTec_2017 and Others",
 }
 
+mat_data["WC80Water20"] = {
+    "vol_fracs": {"WC": 0.80, "Water": 0.20},
+    "mixture_citation": "ElGuebalyFusSciTec_2017 and Others",
+}
 
 # fullreference: SchnabelNDS_2024 G. Schnabel et al.,
 # "FENDL: A Library for Fusion Research and Applications, Nuclear Data Sheets,
@@ -130,19 +161,29 @@ mat_data["IFMIFDONESspecimenstack"] = {
 
 mat_data["Pb"] = {
     "vol_fracs": {"Pb": 1.0},
-    "mixture_citation": "pnnl-15870rev1",
+    "mixture_citation": "NotMixed",
 }
 
 mat_data["SS316LN"] = {
     "vol_fracs": {"SS316LN": 1.0},
-    "mixture_citation": "GilbertHandbookITERCCFE_2016",
+    "mixture_citation": "NotMixed",
 }
 
 mat_data["Concrete"] = {
     "vol_fracs": {"Concrete": 1.0},
-    "mixture_citation": "pnnl-15870rev1",
+    "mixture_citation": "NotMixed",
 }
 
+mat_data["Aluminum1050"] = {
+    "vol_fracs": {"Aluminum1050": 1.0},
+    "mixture_citation": "NotMixed",
+}
+
+mat_data["HTSCsimple"] = {
+    "vol_fracs": {"Ag": 0.04,"Cu": 0.1333, "YBa2Cu3O7": 0.0267, "HastelloyC276": 0.80},
+    "mixture_citation": "Molodyk2021",
+}
+#    "vol_fracs": {"Cu": 0.1333, "Ag": 0.04, "YBa2Cu3O7": 0.0267, "HastelloyC276": 0.80},
 
 ########################################################################
 def main():
@@ -154,7 +195,7 @@ def main():
 
     # Load material library
     mat_lib = mdbt.MaterialLibrary()
-    mat_lib.from_json("../db-outputs/PureFusionMaterials_libv1.json")
+    mat_lib.from_json("../pureMaterials/PureFusionMaterials_libv1.json")
 
     # create material library object
     mixmat_lib = mdbt.MaterialLibrary()

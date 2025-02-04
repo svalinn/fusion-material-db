@@ -1,4 +1,18 @@
 {
+   "Ag" : {
+      "atoms_per_molecule" : -1.0,
+      "comp" : {
+         "Ag107" : 0.5137617590349580,
+         "Ag109" : 0.4862382409650420
+      },
+      "density" : 10.50,
+      "mass" : 1.0,
+      "metadata" : {
+         "citation" : "pnnl-15870rev1",
+         "mat_number" : 31,
+         "name" : "Ag"
+      }
+   },
    "AirSTP" : {
       "atoms_per_molecule" : -1.0,
       "comp" : {
@@ -17,8 +31,28 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 21,
+         "mat_number" : 23,
          "name" : "AirSTP"
+      }
+   },
+   "Aluminum1050" : {
+      "atoms_per_molecule" : -1.0,
+      "comp" : {
+         "Al27" : 0.9950,
+         "Fe54" : 0.0001693667467920021,
+         "Fe56" : 0.002757045863153410,
+         "Fe57" : 6.481105852150811e-05,
+         "Fe58" : 8.776331533079320e-06,
+         "Si28" : 0.001837329735777051,
+         "Si29" : 9.667257749460641e-05,
+         "Si30" : 6.599768672834297e-05
+      },
+      "density" : 2.710,
+      "mass" : 100.0,
+      "metadata" : {
+         "citation" : "AZOMaterialsAl1050",
+         "mat_number" : 50,
+         "name" : "Aluminum1050"
       }
    },
    "Aluminum6061" : {
@@ -57,7 +91,7 @@
       "mass" : 100.0010,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 46,
+         "mat_number" : 49,
          "name" : "Aluminum6061"
       }
    },
@@ -73,7 +107,7 @@
       "mass" : 101.9612915890446,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 49,
+         "mat_number" : 53,
          "name" : "AluminumOxide"
       }
    },
@@ -119,7 +153,7 @@
       "mass" : 1.0,
       "metadata" : {
          "citation" : "HernandezFusEngDes_2018",
-         "mat_number" : 32,
+         "mat_number" : 35,
          "name" : "Be"
       }
    },
@@ -137,7 +171,7 @@
       "mass" : 156.0129407222201,
       "metadata" : {
          "citation" : "HernandezFusEngDes_2018",
-         "mat_number" : 33,
+         "mat_number" : 36,
          "name" : "Be12Ti"
       }
    },
@@ -152,7 +186,7 @@
       "mass" : 159.0876616564450,
       "metadata" : {
          "citation" : "HernandezFusEngDes_2018",
-         "mat_number" : 34,
+         "mat_number" : 37,
          "name" : "Be12V"
       }
    },
@@ -166,7 +200,7 @@
       "mass" : 1.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 26,
+         "mat_number" : 28,
          "name" : "C"
       }
    },
@@ -208,7 +242,7 @@
       "mass" : 99.99990000000001,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 22,
+         "mat_number" : 24,
          "name" : "Concrete"
       }
    },
@@ -241,7 +275,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "JawadORNL_2005 and ???",
-         "mat_number" : 15,
+         "mat_number" : 17,
          "name" : "Cr3FS"
       }
    },
@@ -255,7 +289,7 @@
       "mass" : 1.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 28,
+         "mat_number" : 30,
          "name" : "Cu"
       }
    },
@@ -271,7 +305,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 17,
+         "mat_number" : 19,
          "name" : "D2O"
       }
    },
@@ -331,7 +365,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "FESS-FNSF and ARIES GFFpolyimide",
-         "mat_number" : 10,
+         "mat_number" : 11,
          "name" : "Eins"
       }
    },
@@ -350,7 +384,7 @@
       "mass" : 62.06792616656458,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 48,
+         "mat_number" : 52,
          "name" : "EthyleneGlycol"
       }
    },
@@ -366,7 +400,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 24,
+         "mat_number" : 26,
          "name" : "Fe"
       }
    },
@@ -382,7 +416,7 @@
       "mass" : 97.76406288307290,
       "metadata" : {
          "citation" : "SohalINLEXT-10-18297_2013",
-         "mat_number" : 40,
+         "mat_number" : 43,
          "name" : "FlibeLi60.0"
       }
    },
@@ -398,7 +432,7 @@
       "mass" : 98.88586892346537,
       "metadata" : {
          "citation" : "SohalINLEXT-10-18297_2013",
-         "mat_number" : 39,
+         "mat_number" : 42,
          "name" : "FlibeNat"
       }
    },
@@ -443,6 +477,57 @@
          "name" : "HT9"
       }
    },
+   "HastelloyC276" : {
+      "atoms_per_molecule" : -1.0,
+      "comp" : {
+         "C12" : 9.716546629842101e-05,
+         "C13" : 1.138785360463205e-06,
+         "Co59" : 0.02457606291472106,
+         "Cr50" : 0.006359512540152583,
+         "Cr52" : 0.1275340492961781,
+         "Cr53" : 0.01473979815679312,
+         "Cr54" : 0.003738230078146713,
+         "Fe54" : 0.003052403071536041,
+         "Fe56" : 0.04968871056719506,
+         "Fe57" : 0.001168053811315785,
+         "Fe58" : 0.0001581709623394323,
+         "Mn55" : 0.009830425165888423,
+         "Mo100" : 0.01608097766460759,
+         "Mo92" : 0.02188851516831280,
+         "Mo94" : 0.01408358457463662,
+         "Mo95" : 0.02464059050839341,
+         "Mo96" : 0.02620465131200663,
+         "Mo97" : 0.01524842488643928,
+         "Mo98" : 0.03914005853981845,
+         "Ni58" : 0.3765323262924596,
+         "Ni60" : 0.1500343247833556,
+         "Ni61" : 0.006630766521979653,
+         "Ni62" : 0.02148841487160689,
+         "Ni64" : 0.005648401986238357,
+         "P31" : 0.0002457606291472106,
+         "S32" : 9.310920005007647e-05,
+         "S33" : 7.581294442586727e-07,
+         "S34" : 4.425895373983951e-06,
+         "S36" : 1.102679056513477e-08,
+         "Si28" : 0.0007224692989047138,
+         "Si29" : 3.801330154617112e-05,
+         "Si30" : 2.595141282018893e-05,
+         "V50" : 8.433729903597558e-06,
+         "V51" : 0.003432215078157351,
+         "W180" : 4.329966324895582e-05,
+         "W182" : 0.009668364270232318,
+         "W183" : 0.005249669155350284,
+         "W184" : 0.01130186486383102,
+         "W186" : 0.01060089641941901
+      },
+      "density" : 8.890000000000001,
+      "mass" : 101.7250,
+      "metadata" : {
+         "citation" : "AZOMaterials",
+         "mat_number" : 58,
+         "name" : "HastelloyC276"
+      }
+   },
    "HeNIST" : {
       "atoms_per_molecule" : -1.0,
       "comp" : {
@@ -453,7 +538,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "WidodoJoPCS_2018 and pnnl-15870rev1",
-         "mat_number" : 18,
+         "mat_number" : 20,
          "name" : "HeNIST"
       }
    },
@@ -467,7 +552,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "WidodoJoPCS_2018",
-         "mat_number" : 19,
+         "mat_number" : 21,
          "name" : "HeT410P1"
       }
    },
@@ -481,7 +566,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "WidodoJoPCS_2018",
-         "mat_number" : 20,
+         "mat_number" : 22,
          "name" : "HeT410P80"
       }
    },
@@ -536,7 +621,7 @@
       "mass" : 99.99999999999999,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 52,
+         "mat_number" : 56,
          "name" : "Inconel718"
       }
    },
@@ -583,7 +668,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "ElGuebalyARIESCSFTI_2006",
-         "mat_number" : 12,
+         "mat_number" : 14,
          "name" : "JK2LBSteel"
       }
    },
@@ -597,7 +682,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "CRChandbook64B117",
-         "mat_number" : 14,
+         "mat_number" : 16,
          "name" : "LHe"
       }
    },
@@ -619,7 +704,7 @@
       "mass" : 108.6232258688177,
       "metadata" : {
          "citation" : "HernandezFusEngDes_2018",
-         "mat_number" : 38,
+         "mat_number" : 41,
          "name" : "Li2TiO3Li60.0"
       }
    },
@@ -641,7 +726,7 @@
       "mass" : 109.7450319092101,
       "metadata" : {
          "citation" : "HernandezFusEngDes_2018",
-         "mat_number" : 36,
+         "mat_number" : 39,
          "name" : "Li2TiO3nat"
       }
    },
@@ -661,7 +746,7 @@
       "mass" : 117.5996527345346,
       "metadata" : {
          "citation" : "HernandezFusEngDes_2018",
-         "mat_number" : 37,
+         "mat_number" : 40,
          "name" : "Li4SiO4Li60.0"
       }
    },
@@ -681,7 +766,7 @@
       "mass" : 119.8432648153195,
       "metadata" : {
          "citation" : "HernandezFusEngDes_2018",
-         "mat_number" : 35,
+         "mat_number" : 38,
          "name" : "Li4SiO4nat"
       }
    },
@@ -695,7 +780,7 @@
       "mass" : 6.379133582776449,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 43,
+         "mat_number" : 46,
          "name" : "Li60.0"
       }
    },
@@ -709,7 +794,7 @@
       "mass" : 6.379133582776449,
       "metadata" : {
          "citation" : "BohmFusSciTec_2019",
-         "mat_number" : 44,
+         "mat_number" : 47,
          "name" : "Li60.0T500"
       }
    },
@@ -723,7 +808,7 @@
       "mass" : 1.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 41,
+         "mat_number" : 44,
          "name" : "LiNat"
       }
    },
@@ -737,7 +822,7 @@
       "mass" : 1.0,
       "metadata" : {
          "citation" : "BohmFusSciTec_2019",
-         "mat_number" : 42,
+         "mat_number" : 45,
          "name" : "LiNatT500"
       }
    },
@@ -787,7 +872,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 45,
+         "mat_number" : 48,
          "name" : "Mo"
       }
    },
@@ -800,7 +885,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 25,
+         "mat_number" : 27,
          "name" : "Na"
       }
    },
@@ -846,7 +931,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "PintDOE_ER_0313_57_2014 and KluehJNM_2000 ",
-         "mat_number" : 16,
+         "mat_number" : 18,
          "name" : "ODS125Y"
       }
    },
@@ -868,7 +953,7 @@
       "mass" : 99.99990000000001,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 47,
+         "mat_number" : 51,
          "name" : "OilTexasCrude"
       }
    },
@@ -884,7 +969,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 31,
+         "mat_number" : 34,
          "name" : "Pb"
       }
    },
@@ -902,8 +987,64 @@
       "mass" : 175.6418944156443,
       "metadata" : {
          "citation" : "BohmFusSciTec_2019",
-         "mat_number" : 11,
+         "mat_number" : 12,
          "name" : "Pb157Li90"
+      }
+   },
+   "Pb157Linat" : {
+      "atoms_per_molecule" : 1.0,
+      "comp" : {
+         "Li6" : 0.0004077863491208525,
+         "Li7" : 0.005791021356800824,
+         "Pb204" : 0.01369541311507914,
+         "Pb206" : 0.2380700437664251,
+         "Pb207" : 0.2193746151977263,
+         "Pb208" : 0.5226611202148479
+      },
+      "density" : 9.320,
+      "mass" : 175.7734387575594,
+      "metadata" : {
+         "citation" : "BohmFusSciTec_2019",
+         "mat_number" : 13,
+         "name" : "Pb157Linat"
+      }
+   },
+   "SS304" : {
+      "atoms_per_molecule" : -1.0,
+      "comp" : {
+         "B10" : 1.843094346673051e-06,
+         "B11" : 8.156905653326948e-06,
+         "C12" : 0.0003953662823682752,
+         "C13" : 4.633717631724779e-06,
+         "Cr50" : 0.007930004419221552,
+         "Cr52" : 0.1590287884699489,
+         "Cr53" : 0.01837981508548118,
+         "Cr54" : 0.004661392025348396,
+         "Fe54" : 0.03961544663047193,
+         "Fe56" : 0.6448822175444598,
+         "Fe57" : 0.01515952262504248,
+         "Fe58" : 0.002052813200025696,
+         "Mn55" : 0.009999999999999998,
+         "Ni58" : 0.06215797293893494,
+         "Ni60" : 0.02476767291568919,
+         "Ni61" : 0.001094607228271494,
+         "Ni62" : 0.003547308469479201,
+         "Ni64" : 0.0009324384476251572,
+         "P31" : 0.000230,
+         "S32" : 0.0001420730006264104,
+         "S33" : 1.156810765758202e-06,
+         "S34" : 6.753363103777760e-06,
+         "S36" : 1.682550405357501e-08,
+         "Si28" : 0.004593324339442626,
+         "Si29" : 0.0002416814437365160,
+         "Si30" : 0.0001649942168208575
+      },
+      "density" : 8.0,
+      "mass" : 100.0,
+      "metadata" : {
+         "citation" : "pnnl-15870rev1",
+         "mat_number" : 10,
+         "name" : "SS304"
       }
    },
    "SS316L" : {
@@ -1069,7 +1210,7 @@
       "mass" : 1.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 27,
+         "mat_number" : 29,
          "name" : "Si"
       }
    },
@@ -1108,7 +1249,7 @@
       "mass" : 1.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 29,
+         "mat_number" : 32,
          "name" : "Sn"
       }
    },
@@ -1122,7 +1263,7 @@
       "mass" : 1.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 30,
+         "mat_number" : 33,
          "name" : "Ta"
       }
    },
@@ -1150,7 +1291,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "FESS-FNSF and ???",
-         "mat_number" : 13,
+         "mat_number" : 15,
          "name" : "TernaryNb3Sn"
       }
    },
@@ -1173,7 +1314,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "GrossbeckJNM_1998 and density ARIES_PropertiesArchive and MetalsHandbook_1979",
-         "mat_number" : 50,
+         "mat_number" : 54,
          "name" : "V4Cr4Ti"
       }
    },
@@ -1190,7 +1331,7 @@
       "mass" : 100.0,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 23,
+         "mat_number" : 25,
          "name" : "W"
       }
    },
@@ -1209,7 +1350,7 @@
       "mass" : 195.8525155763622,
       "metadata" : {
          "citation" : "CRChandbook64B152",
-         "mat_number" : 53,
+         "mat_number" : 57,
          "name" : "WC"
       }
    },
@@ -1230,6 +1371,31 @@
          "name" : "Water"
       }
    },
+   "YBa2Cu3O7" : {
+      "atoms_per_molecule" : 13.0,
+      "comp" : {
+         "Ba130" : 0.0004133954594227034,
+         "Ba132" : 0.0003999561571985103,
+         "Ba134" : 0.009716310918485628,
+         "Ba135" : 0.02669789468474460,
+         "Ba136" : 0.03204457607482086,
+         "Ba137" : 0.04616454747673764,
+         "Ba138" : 0.2968365574795671,
+         "Cu63" : 0.1959602340399821,
+         "Cu65" : 0.09020001265727180,
+         "O16" : 0.1676574685248807,
+         "O17" : 6.787470183454305e-05,
+         "O18" : 0.0003877070403609164,
+         "Y89" : 0.1334534647846931
+      },
+      "density" : 6.370,
+      "mass" : 666.1935780268882,
+      "metadata" : {
+         "citation" : "Molodyk2021 and Knizhnik2003",
+         "mat_number" : 59,
+         "name" : "YBa2Cu3O7"
+      }
+   },
    "ZrH2" : {
       "atoms_per_molecule" : 3.0,
       "comp" : {
@@ -1245,7 +1411,7 @@
       "mass" : 93.23952429992536,
       "metadata" : {
          "citation" : "pnnl-15870rev1",
-         "mat_number" : 51,
+         "mat_number" : 55,
          "name" : "ZrH2"
       }
    }
