@@ -14,7 +14,7 @@ from pyne.material_library import (
 #
 #
 parser = argparse.ArgumentParser(
-    description=("Reads a pyne database file of material objects")
+    description=("Reads a pyne database file of material objects and outputs various formats")
 )
 parser.add_argument(
     "-f",
@@ -54,7 +54,7 @@ parser.add_argument(
 parser.add_argument(
     "-w",
     "--writedefault",
-    help="Write out the library using default datapath,nucpath",
+    help="Write out the library in pyne h5m format using default datapath,nucpath",
     action="store_true",
 )
 args = parser.parse_args()
@@ -76,9 +76,12 @@ if args.prebuilt:
         nucpath="/material_library/nucid",
     )  # use specific datapath,nucpath
 else:
-    matllib = MaterialLibrary(
-        lib=pynematdatabasefilein
-    )  # use default datapath,nucpath
+    if pynematdatabasefilein.lower().endswith('.json'):
+        matllib =MaterialLibrary()
+        matllib.from_json(pynematdatabasefilein)
+    else:
+            matllib = MaterialLibrary(
+                lib=pynematdatabasefilein)  # use default datapath,nucpath and assumes pyne format
 #
 print("\n The number of entries in the materials database: ", len(matllib))
 # print "Some entries in the materials database: ", matllib.keys()[0:7]
@@ -144,7 +147,7 @@ if args.writeOpenMC:
     print(
         "\n Writing all the materials in OpenMC material format by atom fraction... \n"
     )
-    matllib.write_openmc('PureFusionMaterials_openmcAtomfrac.xml')
+    matllib.write_openmc('testplayall_openmcAtomfrac.xml')
 #
 # if requested, write all the materials in Alara matl card format to a text file
 if args.writeAlara:
@@ -181,7 +184,7 @@ if args.writeJson:
 #
 # if requested, write the library with default datapath nucpath for uwuw workflow
 if args.writedefault:
-    print("\n Writing the library with default datapath,nucpath...")
+    print("\n Writing the library in pyne h5m format with default datapath,nucpath...")
     matllib.write_hdf5(
         "testlibdefaultpaths.h5"
     )  # don't set datapath,nucpath...will be pyne default values

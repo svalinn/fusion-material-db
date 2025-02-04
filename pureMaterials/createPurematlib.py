@@ -156,6 +156,24 @@ mat_data["SS316L"] = {
     "citation": "pnnl-15870rev1",
 }
 
+# reference: pnnl-15870rev1
+# added 10 wppm B which is important to assess typical He production level
+mat_data["SS304"] = {
+    "nucvec": {
+        50000000: 0.001,
+        60000000: 0.04,
+        140000000: 0.5,
+        150000000: 0.023,
+        160000000: 0.015,
+        240000000: 19,
+        250000000: 1,
+        260000000: 70.171,
+        280000000: 9.25,
+    },
+    "density": 8.00,
+    "citation": "pnnl-15870rev1",
+}
+
 # reference: FESS-FNSF very similar to GFFpolyimide from ARIES
 mat_data["Eins"] = {
     "nucvec": {
@@ -175,6 +193,13 @@ mat_data["Eins"] = {
 # fullreference: MartelliFusEngDes_2019 https://doi.org/10.1016/j.fusengdes.2018.11.028
 mat_data["Pb157Li90"] = {
     "atom_frac": {li_enriched_90: 0.157, "Pb": 0.843},
+    "density": 9.32,  # not sure of Temperature
+    "citation": "BohmFusSciTec_2019",
+}
+
+
+mat_data["Pb157Linat"] = {
+    "atom_frac": {"Li": 0.157, "Pb": 0.843},
     "density": 9.32,  # not sure of Temperature
     "citation": "BohmFusSciTec_2019",
 }
@@ -356,6 +381,13 @@ mat_data["Cu"] = {
     "citation": "pnnl-15870rev1",
 }
 
+# reference: pnnl-15870rev1
+mat_data["Ag"] = {
+    "nucvec": {470000000: 1.0},
+    "density": 10.50,
+    "citation": "pnnl-15870rev1",
+}
+
 # reference:  pnnl-15870rev1
 mat_data["Sn"] = {
     "nucvec": {500000000: 1.0},
@@ -505,6 +537,17 @@ mat_data["Aluminum6061"] = {
     "citation": "pnnl-15870rev1",
 }
 
+# fullreference: AZOMaterialsAl1050, AZO Materials, https://www.azom.com/article.aspx?ArticleID=2798
+mat_data["Aluminum1050"] = {
+    "nucvec": {
+        130000000: 99.5,
+        140000000: 0.20,
+        260000000: 0.30,
+    },
+    "density": 2.71,
+    "citation": "AZOMaterialsAl1050",
+}
+
 # reference: pnnl-15870rev1
 mat_data["OilTexasCrude"] = {
     "nucvec": {
@@ -576,7 +619,33 @@ mat_data["WC"] = {
     "density": 15.63,
     "citation": "CRChandbook64B152",
 }
-
+# fullreference: AZOMaterialsHastelloyC276, AZO Materials, Super Alloy Hastelloy C276, https://www.azom.com/article.aspx?ArticleID=7804
+mat_data["HastelloyC276"] = {
+    "nucvec" : {
+                  60000000: 0.010,
+                 140000000: 0.080,
+                 150000000: 0.025,
+                 160000000: 0.010,
+                 230000000: 0.35,
+                 240000000: 15.5000,
+                 250000000: 1.0,
+                 260000000: 5.5000,
+                 280000000: 57.000,
+                 270000000: 2.5,
+                 420000000: 16.0,
+                 740000000: 3.75,
+    },
+    "density": 8.89, # room temperature
+    "citation": "AZOMaterials",
+}
+# YBa2Cu3O7
+# fullreference: Molodyk2021  https://doi.org/10.1038/s41598-021-81559-z 
+# fullreference: Knizhnik2003 https://doi.org/10.1016/S0921-4534(03)01311-X
+mat_data["YBa2Cu3O7"] = {
+    "atom_frac": {"Y": 1, "Ba": 2, "Cu": 3, "O": 7},
+    "density": 6.37,  # not sure of Temperature Knizhnik2003
+    "citation": "Molodyk2021 and Knizhnik2003",
+}
 
 # --------------------------------------------------------
 def main():
@@ -606,7 +675,7 @@ def main():
     except:
         pass
 
-    # write fnsf1d material library
+    # write material library
     mat_lib.write_json("PureFusionMaterials_libv1.json")
     print("All done!")
 
