@@ -16,11 +16,19 @@ def make_mat_from_atom(atom_frac, density, citation):
     return mat.expand_elements()
 
 
-def get_consituent_citations(materials):
-    citation_str = ""
+def get_constituent_citations(materials):
+    """
+    Retrieve citations from a list of materials.
+
+    Arguments:
+        materials (list): A list of Material objects.
+    Returns:
+        citation (str): A comma-separated string of citations.
+    """
+    citation_list = []
     for mat in materials:
-        citation_str = " ".join([citation_str, mat.metadata["citation"]])
-    return citation_str
+        citation_list.append(mat.metadata["citation"])
+    return ", ".join(citation_list)
 
 
 # Mix Materials by Volume
@@ -48,7 +56,7 @@ def mix_by_volume(material_library, vol_fracs, citation, density_factor=1):
     mat = mix.mix_by_volume()
     mat.density *= density_factor
     mat.metadata["mixture_citation"] = citation
-    mat.metadata["constituent_citation"] = get_consituent_citations(
+    mat.metadata["constituent_citation"] = get_constituent_citations(
         list(mix_dict.keys())
     )
     return mat
